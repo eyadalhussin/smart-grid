@@ -1,9 +1,20 @@
 # SWT2Projekt
 
 # Verteilung
-## Frontend: Niklas, Leon, Justin, Dennis
-## Backend: Eyad, Lars, Max
+## Smart Home: Niklas, Leon, Justin, Dennis
+- Frontend: Angular
+- Persistenz: H2
 
+## Smart Grid: Eyad, Lars, Max
+- Frontend: Konsole
+- Persistenz: MariaDB
+
+# Komponente
+- Smart Home
+- Smart Grid
+- MQTT Broker
+- Wetterkomponente (selbst steuern/zufallsgesteuert)
+- Zeit (Zeitsignal, autonomes Zeittracking...)
 <details><summary>Git readme</summary>
 ## Getting started
 
