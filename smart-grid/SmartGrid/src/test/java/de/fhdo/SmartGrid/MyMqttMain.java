@@ -49,7 +49,7 @@ public class MyMqttMain {
         // publish a message to the topic "my/test/topic"
         client.publishWith()
                 .topic("my/test/topic")
-                .payload(UTF_8.encode("Hello"))
+                .payload(UTF_8.encode("Hello Test"))
                 .send();
     }
 }
