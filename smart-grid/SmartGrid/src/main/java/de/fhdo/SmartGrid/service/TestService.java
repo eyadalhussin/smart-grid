@@ -1,2 +1,4 @@
-package de.fhdo.SmartGrid.service;public class TestService {
+package de.fhdo.SmartGrid.service;
+
+public class TestService {
 }
