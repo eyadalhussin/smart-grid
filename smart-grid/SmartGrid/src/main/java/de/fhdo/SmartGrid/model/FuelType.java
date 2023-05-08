@@ -1,2 +1,6 @@
-package de.fhdo.SmartGrid.model;public enum FuelType {
+package de.fhdo.SmartGrid.model;
+
+public enum FuelType {
+    ATOMKRAFT,
+    KOHLE
 }
