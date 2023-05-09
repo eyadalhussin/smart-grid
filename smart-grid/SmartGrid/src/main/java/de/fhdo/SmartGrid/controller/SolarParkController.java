@@ -1,11 +1,11 @@
 package de.fhdo.SmartGrid.controller;
 
 import de.fhdo.SmartGrid.model.SolarPark;
+import de.fhdo.SmartGrid.model.WeatherModel;
 import de.fhdo.SmartGrid.service.SolarParkService;
+import de.fhdo.SmartGrid.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/solarpark")
@@ -13,6 +13,12 @@ public class SolarParkController {
 
     @Autowired
     private SolarParkService solarParkService;
+    private final WeatherService weatherService;
+
+    public SolarParkController(SolarParkService solarParkService, WeatherService weatherService) {
+        this.solarParkService = solarParkService;
+        this.weatherService = weatherService;
+    }
 
     @GetMapping("/all")
     public String all() {
@@ -24,5 +30,15 @@ public class SolarParkController {
         return solarParkService.save(new SolarPark("SoPa01", 1000.0, 100.0, 20)).toString();
     }
 
-
+    @GetMapping("/{city}/efficiency")
+    public double getSolarPanelEfficiencyByCity(@PathVariable String city,
+                                                @RequestParam(value = "timestamp", required = false) Long timestamp) {
+        WeatherModel weatherModel;
+        if (timestamp == null) {
+            weatherModel = weatherService.getWeatherByCity(city);
+        } else {
+            weatherModel = weatherService.getHistoricalWeatherByCity(city, timestamp);
+        }
+        return solarParkService.calculateEfficiency(weatherModel);
+    }
 }
