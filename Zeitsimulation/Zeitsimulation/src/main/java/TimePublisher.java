@@ -1,34 +1,24 @@
-import com.hivemq.client.mqtt.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Scanner;
-import java.util.TimeZone;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.hivemq.client.mqtt.MqttGlobalPublishFilter.ALL;
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 public class TimePublisher {
-
-
-
-    public static void main(String[] args) {
-
-        LocalDateTime now = LocalDateTime.now();
-        
-        var brokerUrl = "9f9d9269beaa47d0b0ff7b8e478c13b5.s2.eu.hivemq.cloud";
-        var username = "fhswt2";
-        var password = "FHDOswt2";
+    public static void main(String[] args) throws MqttException {
+        var brokerUrl = "tcp://159.89.104.105:1883";
+        var clientID = "TimePublisher";
+        var pubTopic = "fhdo/time";
+        var qos = 0;
 
         var totalAcceleratedTime = Duration.ZERO;
+        var lastPublishedTime = Duration.ZERO;
         var accelerationFactor = new AtomicReference<>(1.0);
 
         var userInputThread = new Thread(() -> {
@@ -50,19 +40,16 @@ public class TimePublisher {
         userInputThread.setDaemon(true);
 
 
-        final var client = MqttClient.builder()
-                .useMqttVersion5()
-                .serverHost(brokerUrl)
-                .serverPort(8883)
-                .sslWithDefaultConfig()
-                .buildBlocking();
+        final var client = new MqttClient(brokerUrl, clientID, new MemoryPersistence());
+        var options = new MqttConnectOptions();
+        options.setUserName("fhdo");
+        options.setPassword("fhdo".toCharArray());
 
-        client.connectWith()
-                .simpleAuth()
-                .username(username)
-                .password(UTF_8.encode(password))
-                .applySimpleAuth()
-                .send();
+        options.setCleanSession(true);
+
+        System.out.println("Connecting to broker: " + brokerUrl);
+        client.connect(options);
+
 
         System.out.println("Connected successfully to broker: " + brokerUrl);
 
@@ -71,14 +58,23 @@ public class TimePublisher {
 
         while (true) {
             totalAcceleratedTime = totalAcceleratedTime.plusSeconds(1);
+            lastPublishedTime = lastPublishedTime.minusSeconds(1);
             var acceleratedTime = startTime.plus(totalAcceleratedTime);
 
-            var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-            client.publishWith()
-                    .topic("fhdo/time")
-                    .payload(UTF_8.encode(acceleratedTime.format(formatter)))
-                    .send();
+            var formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            var formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+
+            if(lastPublishedTime.isNegative()) {
+
+                var jsonPayload = String.format("{\"date\": \"%s\", \"time\": \"%s\"}",
+                        acceleratedTime.format(formatterDate),
+                        acceleratedTime.format(formatterTime));
+                var message = new MqttMessage(jsonPayload.getBytes());
+                message.setQos(qos);
+                client.publish(pubTopic, message);
+                lastPublishedTime = Duration.ofSeconds(60);
+            }
 
             try {
                 var sleepInterval = (long) (1000 / accelerationFactor.get());
