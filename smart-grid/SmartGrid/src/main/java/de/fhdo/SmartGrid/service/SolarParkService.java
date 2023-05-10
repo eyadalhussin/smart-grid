@@ -34,7 +34,7 @@ public class SolarParkService {
         double efficiency;
 
         //Effizienz anpassen
-        if (weatherModel.getWeather().get(0).getMain().equalsIgnoreCase("clear")) {
+        if (weatherModel.getWeatherName().equals("Clear")) {
             efficiency = 1.0;
         } else {
             efficiency = 0.5;
