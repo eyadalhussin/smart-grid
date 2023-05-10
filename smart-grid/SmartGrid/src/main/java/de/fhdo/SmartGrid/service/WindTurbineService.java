@@ -12,11 +12,12 @@ import java.util.List;
 public class WindTurbineService {
 
     private final WindTurbineRepository windTurbineRepository;
-    private WeatherService weatherService;
+    private final WeatherService weatherService;
 
     @Autowired
-    public WindTurbineService(WindTurbineRepository windTurbineRepository) {
+    public WindTurbineService(WindTurbineRepository windTurbineRepository, WeatherService weatherService) {
         this.windTurbineRepository = windTurbineRepository;
+        this.weatherService = weatherService;
     }
 
     public List<WindTurbine> getWindTurbines() {
@@ -27,15 +28,18 @@ public class WindTurbineService {
         return windTurbineRepository.save(windTurbine);
     }
 
-    public void controlWindTurbines(String city) {
-        WeatherModel weatherModel = weatherService.getWeatherByCity(city);
+    public double calculatePowerOutput() {
+        WeatherModel weatherModel = weatherService.getLocalWeather();
         double windSpeed = weatherModel.getMain().getWindSpeed();
 
+        double totalPowerOutput = 0;
         Iterable<WindTurbine> windTurbines = windTurbineRepository.findAll();
         for (WindTurbine windTurbine : windTurbines) {
             windTurbine.setWindSpeed(windSpeed);
             windTurbineRepository.save(windTurbine);
+            totalPowerOutput += windTurbine.getCapacity() * windSpeed * windTurbine.getEfficiency(); //Berechnung anpassen??
         }
+        return totalPowerOutput;
     }
 
 }
