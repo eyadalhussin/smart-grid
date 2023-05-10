@@ -34,4 +34,5 @@ public class WindTurbine extends EnergyProducer {
     public double getEfficiency() {
         return efficiency;
     }
+
 }
