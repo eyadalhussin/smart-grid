@@ -33,12 +33,7 @@ public class SolarParkController {
     @GetMapping("/{city}/efficiency")
     public double getSolarPanelEfficiencyByCity(@PathVariable String city,
                                                 @RequestParam(value = "timestamp", required = false) Long timestamp) {
-        WeatherModel weatherModel;
-        if (timestamp == null) {
-            weatherModel = weatherService.getWeatherByCity(city);
-        } else {
-            weatherModel = weatherService.getHistoricalWeatherByCity(city, timestamp);
-        }
+        WeatherModel weatherModel = weatherService.getWeatherByCity(city);
         return solarParkService.calculateEfficiency(weatherModel);
     }
 }
