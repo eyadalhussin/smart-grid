@@ -1,5 +1,8 @@
 package de.fhdo.weathercontroller.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import jakarta.persistence.*;
 
 import java.time.Instant;
@@ -223,7 +226,7 @@ public class WetterDaten {
 
     @Override
     public String toString() {
-        return "WetterDaten{" +
+        /*return "WetterDaten{" +
                 "id=" + id +
                 ", temp=" + temp +
                 ", tempMin=" + tempMin +
@@ -243,6 +246,17 @@ public class WetterDaten {
                 ", windGust=" + windGust +
                 ", rain1h=" + rain1h +
                 ", snow1h='" + snow1h + '\'' +
-                '}';
+                '}';*/
+        return toJson();
+    }
+
+    public String toJson() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
