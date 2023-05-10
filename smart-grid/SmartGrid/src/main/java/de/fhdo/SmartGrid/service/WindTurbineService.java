@@ -30,7 +30,9 @@ public class WindTurbineService {
 
     public double calculatePowerOutput() {
         WeatherModel weatherModel = weatherService.getLocalWeather();
-        double windSpeed = weatherModel.getMain().getWindSpeed();
+        double windSpeed = weatherModel.getWindSpeed();
+
+        System.out.println("Windgeschwindigkeit: " + windSpeed);
 
         double totalPowerOutput = 0;
         Iterable<WindTurbine> windTurbines = windTurbineRepository.findAll();
