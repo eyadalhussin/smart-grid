@@ -61,12 +61,20 @@ public class WeatherModel {
         @JsonProperty("temp")
         private double temp;
 
+        @JsonProperty("wind_speed")
+        private double windSpeed;
+
         public double getTemp() {
             return temp;
         }
-
         public void setTemp(double temp) {
             this.temp = temp;
+        }
+        public double getWindSpeed() {
+            return windSpeed;
+        }
+        public void setWindSpeed(double windSpeed) {
+            this.windSpeed = windSpeed;
         }
     }
 

@@ -1,4 +1,4 @@
-package de.fhdo.SmartGrid.Repository;
+package de.fhdo.SmartGrid.repository;
 
 import de.fhdo.SmartGrid.model.ConventionalPowerPlant;
 import org.springframework.data.jpa.repository.JpaRepository;

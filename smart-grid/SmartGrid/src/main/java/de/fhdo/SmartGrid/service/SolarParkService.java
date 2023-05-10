@@ -1,6 +1,6 @@
 package de.fhdo.SmartGrid.service;
 
-import de.fhdo.SmartGrid.Repository.SolarParkRepository;
+import de.fhdo.SmartGrid.repository.SolarParkRepository;
 import de.fhdo.SmartGrid.model.SolarPark;
 import de.fhdo.SmartGrid.model.WeatherModel;
 import org.springframework.beans.factory.annotation.Autowired;
