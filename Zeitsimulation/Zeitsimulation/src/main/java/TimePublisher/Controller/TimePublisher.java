@@ -19,7 +19,7 @@ import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
-@RequestMapping("/api/time")
+@RequestMapping("/")
 public class TimePublisher implements CommandLineRunner {
     private AtomicReference<Double> accelerationFactor = new AtomicReference<>(1.0);
     private LocalDateTime startTime;
@@ -43,10 +43,12 @@ public class TimePublisher implements CommandLineRunner {
         var formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         var formatterTime = DateTimeFormatter.ofPattern("HH:mm");
         var acceleratedTime = startTime.plus(totalAcceleratedTime)
-                                            .minusYears(3);
-        return ResponseEntity.ok(String.format("{\"date\": \"%s\", \"time\": \"%s\"}",
+                                            .minusYears(3)
+                                            .plusHours(2);
+        return ResponseEntity.ok(String.format("{\"date\": \"%s\", \"time\": \"%s\", \"accelerationFactor\": %.2f}",
                 acceleratedTime.format(formatterDate),
-                acceleratedTime.format(formatterTime)));
+                acceleratedTime.format(formatterTime),
+                accelerationFactor.get()));
     }
 
 
