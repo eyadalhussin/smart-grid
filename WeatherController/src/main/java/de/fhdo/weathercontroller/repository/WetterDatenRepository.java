@@ -1,4 +1,9 @@
 package de.fhdo.weathercontroller.repository;
 
-public interface WetterDatenRepository extends org.springframework.data.jpa.repository.JpaRepository<de.fhdo.weathercontroller.model.WetterDaten, java.time.Instant> {
+import de.fhdo.weathercontroller.model.WetterDaten;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.time.Instant;
+
+public interface WetterDatenRepository extends JpaRepository<WetterDaten, Instant> {
 }
