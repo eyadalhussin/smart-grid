@@ -1,6 +1,6 @@
 package de.fhdo.SmartGrid.service;
 
-import de.fhdo.SmartGrid.Repository.ConventionalPowerPlanRepository;
+import de.fhdo.SmartGrid.repository.ConventionalPowerPlanRepository;
 import de.fhdo.SmartGrid.model.ConventionalPowerPlant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

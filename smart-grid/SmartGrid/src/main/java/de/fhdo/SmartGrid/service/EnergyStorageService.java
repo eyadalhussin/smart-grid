@@ -2,7 +2,7 @@ package de.fhdo.SmartGrid.service;
 
 
 import de.fhdo.SmartGrid.model.EnergyStorage;
-import de.fhdo.SmartGrid.Repository.EnergyStorageRepository;
+import de.fhdo.SmartGrid.repository.EnergyStorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
