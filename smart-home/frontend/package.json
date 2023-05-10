@@ -1,7 +1,7 @@
 {
   "name": "swt2projekt",
   "version": "1.0.0",
-  "description": "- Frontend: Angular\r - Persistenz: H2",
+  "description": "- Frontend: Vue\r - Persistenz: H2",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
