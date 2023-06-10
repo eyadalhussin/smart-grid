@@ -10,6 +10,11 @@ public class ConventionalPowerPlant extends EnergyProducer{
     public ConventionalPowerPlant() {
     }
 
+    @Override
+    protected void calculateCurrentPowerGeneration() {
+
+    }
+
     public ConventionalPowerPlant(String name, double capacity, FuelType fuelType, double efficiency) {
         super(name, capacity);
         this.fuelType = fuelType;

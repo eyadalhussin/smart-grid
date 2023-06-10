@@ -1,6 +1,9 @@
 package de.fhdo.SmartGrid.model;
 
+import de.fhdo.SmartGrid.Components.EnergyHandler;
+import de.fhdo.SmartGrid.Components.TimeObserver;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -11,9 +14,8 @@ public abstract class EnergyProducer {
     private long id;
     private String name;
     private double capacity;
-
+    protected double currentPowerGeneration;
     public EnergyProducer() {
-
     }
 
     public EnergyProducer(String name, double capacity) {
@@ -44,4 +46,10 @@ public abstract class EnergyProducer {
     public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
+    protected abstract void calculateCurrentPowerGeneration();
+
+    public double getCurrentPowerGeneration() {
+        return currentPowerGeneration;
+    }
+
 }

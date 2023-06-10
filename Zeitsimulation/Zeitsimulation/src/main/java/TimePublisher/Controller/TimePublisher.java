@@ -8,8 +8,10 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
@@ -21,9 +23,15 @@ import java.util.concurrent.atomic.AtomicReference;
 @RestController
 @RequestMapping("/")
 public class TimePublisher implements CommandLineRunner {
+    private final SimpMessagingTemplate messagingTemplate;
     private AtomicReference<Double> accelerationFactor = new AtomicReference<>(1.0);
     private LocalDateTime startTime;
     private Duration totalAcceleratedTime = Duration.ZERO;
+
+    @Autowired
+    public TimePublisher(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
 
     @PostMapping("/acceleration")
     public ResponseEntity<String> setAccelerationFactor(@Valid @RequestParam @Min(0) @Max(1000)  Double accelerationFactor) {
@@ -50,9 +58,6 @@ public class TimePublisher implements CommandLineRunner {
                 acceleratedTime.format(formatterTime),
                 accelerationFactor.get()));
     }
-
-
-
 
     @Override
     public void run(String... args) throws Exception {
@@ -101,6 +106,7 @@ public class TimePublisher implements CommandLineRunner {
                 var message = new MqttMessage(jsonPayload.getBytes());
                 message.setQos(qos);
                 client.publish(pubTopic, message);
+                messagingTemplate.convertAndSend("/time", jsonPayload);
                 lastPublishedTime = Duration.ofSeconds(60);
             }
 

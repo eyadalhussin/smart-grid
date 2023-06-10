@@ -1,4 +1,4 @@
-package de.fhdo.weathercontroller;
+package de.fhdo.SmartGrid.Components;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -6,21 +6,24 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
 
 import java.time.*;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-@SpringBootApplication
-public class WeatherControllerApplication implements CommandLineRunner {
+@Component
+public class TimeSimulation implements CommandLineRunner {
+    public static Instant CurrentTime;
+    private static List<TimeObserver> timeObservers = new ArrayList<>();
 
-    public static Instant CurrentTime = Instant.now();
-
-    public static void main(String[] args) {
-        SpringApplication.run(WeatherControllerApplication.class, args);
+    public static void registerObserver(TimeObserver observer) {
+        timeObservers.add(observer);
     }
 
+    public static void unregisterObserver(TimeObserver observer) {
+        timeObservers.remove(observer);
+    }
     @Override
     public void run(String... args) throws Exception {
         var brokerUrl = "tcp://159.89.104.105:1883";
@@ -52,6 +55,10 @@ public class WeatherControllerApplication implements CommandLineRunner {
                         .withSecond(0)
                         .withNano(0);
                 CurrentTime = localDateTime.toInstant(ZoneOffset.UTC);
+
+                // Observer benachrichtigen, dass sich die Zeit geändert hat. Wird in einem eigenen Thread ausgeführt, damit der MQTT-Client nicht blockiert wird.
+                new Thread( () -> timeObservers.forEach(TimeObserver::timeUpdated)).start();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

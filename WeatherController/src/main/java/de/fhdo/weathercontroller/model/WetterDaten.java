@@ -246,7 +246,7 @@ public class WetterDaten {
                 ", windGust=" + windGust +
                 ", rain1h=" + rain1h +
                 ", snow1h='" + snow1h + '\'' +
-                '}';*/
+                '}';'*/
         return toJson();
     }
 

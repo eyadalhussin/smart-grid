@@ -1,11 +1,11 @@
 package de.fhdo.SmartGrid;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SmartGridApplication {
-
+public class SmartGridApplication  {
 	public static void main(String[] args) {
 		SpringApplication.run(SmartGridApplication.class, args);
 	}

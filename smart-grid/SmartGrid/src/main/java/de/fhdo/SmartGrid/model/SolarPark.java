@@ -12,6 +12,11 @@ public class SolarPark extends EnergyProducer {
 
     }
 
+    @Override
+    protected void calculateCurrentPowerGeneration() {
+
+    }
+
     public SolarPark(String name, double capacity, double panelEfficiency, double panelArea) {
         super(name, capacity);
         this.panelEfficiency = panelEfficiency;
@@ -44,4 +49,5 @@ public class SolarPark extends EnergyProducer {
                 ", panelArea=" + panelArea +
                 '}';
     }
+
 }

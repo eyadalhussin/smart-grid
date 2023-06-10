@@ -13,6 +13,11 @@ public class WindTurbine extends EnergyProducer {
 
     }
 
+    @Override
+    protected void calculateCurrentPowerGeneration() {
+
+    }
+
     public WindTurbine(String name, double capacity, double windSpeed, double efficiency) {
         super(name, capacity);
         this.windSpeed = windSpeed;
