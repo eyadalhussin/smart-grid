@@ -29,7 +29,6 @@ public class TimeSimulationComponent implements CommandLineRunner {
         var brokerUrl = "tcp://159.89.104.105:1883";
         var clientID = "WeatherController";
         var topic = "fhdo/time";
-        var qos = 0;
 
         final var client = new MqttClient(brokerUrl, clientID, new MemoryPersistence());
         var options = new MqttConnectOptions();

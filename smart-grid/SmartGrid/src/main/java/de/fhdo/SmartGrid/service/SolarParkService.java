@@ -4,6 +4,7 @@ import de.fhdo.SmartGrid.repository.SolarParkRepository;
 import de.fhdo.SmartGrid.model.SolarPark;
 import de.fhdo.SmartGrid.model.WeatherModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +12,15 @@ import java.util.List;
 @Service
 public class SolarParkService {
 
+    private final SolarParkRepository repository;
+    private final EnergyProducerService energyProducerService;
+
     @Autowired
-    private SolarParkRepository repository;
+    public SolarParkService(SolarParkRepository repository, EnergyProducerService energyProducerService) {
+        this.repository = repository;
+        this.energyProducerService = energyProducerService;
+    }
+
 
     public List<SolarPark> findAll() {
         return repository.findAll();
@@ -22,25 +30,18 @@ public class SolarParkService {
         return repository.findById(id).orElse(null);
     }
 
-    public SolarPark save(SolarPark solarPark) {
-        return repository.save(solarPark);
+    public SolarPark addSolarPark(SolarPark solarPark) {
+        try {
+            energyProducerService.addEnergyProducer(solarPark);
+            return repository.save(solarPark);
+        } catch (DataAccessException e) {
+            energyProducerService.removeEnergyProducer(solarPark);
+            throw e;
+        }
+
     }
 
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
-
-    /*
-    public double calculateEfficiency(WeatherModel weatherModel) {
-        double efficiency;
-
-        //Effizienz anpassen
-        if (weatherModel.getWeatherName().equals("Clear")) {
-            efficiency = 1.0;
-        } else {
-            efficiency = 0.5;
-        }
-        return efficiency;
-    }
-     */
 }

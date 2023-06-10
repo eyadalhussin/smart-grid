@@ -16,6 +16,15 @@ public class SolarPark extends EnergyProducer {
         this.numberOfCells = numberOfCells;
     }
 
+    @Override
+    public String toString() {
+        return "SolarPark{" +
+                "numberOfCells=" + numberOfCells +
+                ", cellEfficiency=" + cellEfficiency +
+                ", currentPowerGeneration=" + currentPowerGeneration +
+                '}';
+    }
+
     public double getCellEfficiency() {
         return cellEfficiency;
     }

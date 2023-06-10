@@ -3,6 +3,7 @@ package de.fhdo.SmartGrid.controller;
 import de.fhdo.SmartGrid.service.EnergyProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,8 +16,8 @@ public class EnergyProducerController {
         this.energyProducerService = energyProducerService;
     }
 
-    @GetMapping("/test-add")
-    public void testAdd() {
-        energyProducerService.testAdd();
+    @PostMapping("/add")
+    public void addProducer() {
+
     }
 }

@@ -50,14 +50,12 @@ public class EnergyProducerService implements TimeObserver {
         System.out.printf("Current Energy generation: %.2f kWh%n", currentEnergyGeneration);
     }
 
-    public void testAdd() {
-        var powerPlant = new ConventionalPowerPlant("TestConventional");
-        addEnergyProducer(powerPlant);
-    }
-
     public void addEnergyProducer(EnergyProducer energyProducer) {
         energyProducers.add(energyProducer);
-        energyProducerRepository.save(energyProducer);
+    }
+
+    public void removeEnergyProducer(EnergyProducer energyProducer) {
+        energyProducers.remove(energyProducer);
     }
 }
 
