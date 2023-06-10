@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 @Entity
 public class SolarPark extends EnergyProducer {
 
-    private double panelEfficiency;
-    private double panelArea;
 
     public SolarPark() {
 
@@ -17,26 +15,8 @@ public class SolarPark extends EnergyProducer {
 
     }
 
-    public SolarPark(String name, double capacity, double panelEfficiency, double panelArea) {
+    public SolarPark(String name, double capacity) {
         super(name, capacity);
-        this.panelEfficiency = panelEfficiency;
-        this.panelArea = panelArea;
-    }
-
-    public double getPanelEfficiency() {
-        return panelEfficiency;
-    }
-
-    public void setPanelEfficiency(double panelEfficiency) {
-        this.panelEfficiency = panelEfficiency;
-    }
-
-    public double getPanelArea() {
-        return panelArea;
-    }
-
-    public void setPanelArea(double panelArea) {
-        this.panelArea = panelArea;
     }
 
     @Override
@@ -45,8 +25,6 @@ public class SolarPark extends EnergyProducer {
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", capacity=" + getCapacity() +
-                ", panelEfficiency=" + panelEfficiency +
-                ", panelArea=" + panelArea +
                 '}';
     }
 

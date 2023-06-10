@@ -27,11 +27,6 @@ public class WindTurbineController {
         return windTurbineService.getWindTurbines();
     }
 
-    @GetMapping("/testadd")
-    public String testadd() {
-        return windTurbineService.save(new WindTurbine("WT01", 1000.0, 10.0, 0.5)).toString();
-    }
-
     @PostMapping
     public WindTurbine addWindTurbine(@RequestBody WindTurbine windTurbine) {
         return windTurbineService.save(windTurbine);

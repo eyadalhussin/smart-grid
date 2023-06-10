@@ -25,10 +25,6 @@ public class SolarParkController {
         return solarParkService.findAll().toString();
     }
 
-    @GetMapping("/testadd")
-    public String testadd() {
-        return solarParkService.save(new SolarPark("SoPa01", 1000.0, 100.0, 20)).toString();
-    }
 
     @GetMapping("/{city}/efficiency")
     public double getSolarPanelEfficiencyByCity(@PathVariable String city,
