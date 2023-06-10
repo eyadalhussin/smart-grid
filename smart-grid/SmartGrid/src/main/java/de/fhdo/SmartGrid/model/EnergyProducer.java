@@ -1,6 +1,7 @@
 package de.fhdo.SmartGrid.model;
 
 import de.fhdo.SmartGrid.service.WeatherService;
+import de.fhdo.SmartGrid.strategies.PowerGenerationStrategy;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,7 +12,7 @@ public abstract class EnergyProducer {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
     private String name;
-    protected double currentPowerGeneration;
+    private double currentPowerGeneration;
     public EnergyProducer() {
     }
 
@@ -36,11 +37,9 @@ public abstract class EnergyProducer {
     }
 
 
-    public void setPowerGeneration(double powerGeneration) {
+    public void setCurrentPowerGeneration(double powerGeneration) {
         this.currentPowerGeneration = powerGeneration;
     }
-
-    public abstract void calculateCurrentPowerGeneration(WeatherService weatherService);
 
     public double getCurrentPowerGeneration() {
         return currentPowerGeneration;

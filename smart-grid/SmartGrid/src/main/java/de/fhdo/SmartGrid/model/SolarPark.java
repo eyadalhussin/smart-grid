@@ -21,7 +21,6 @@ public class SolarPark extends EnergyProducer {
         return "SolarPark{" +
                 "numberOfCells=" + numberOfCells +
                 ", cellEfficiency=" + cellEfficiency +
-                ", currentPowerGeneration=" + currentPowerGeneration +
                 '}';
     }
 
@@ -43,30 +42,5 @@ public class SolarPark extends EnergyProducer {
 
     public SolarPark(String name) {
         super(name);
-    }
-
-    @Override
-    public void calculateCurrentPowerGeneration(WeatherService weatherService) {
-        System.out.println("SolarPark.calculateCurrentPowerGeneration");
-        WeatherModel weather = weatherService.getCurrentWeather();
-
-        double temp = weather.getTemp();
-        int cloudiness = weather.getCloud();
-
-        // Stromerzeugung basierend auf Temperatur
-        double powerOutput = temp / 100;
-
-        // Einfluss der Wolken
-        powerOutput *= (1 - cloudiness / 100.0);
-
-        // Zufällige Schwankung von -10% bis +10%
-        powerOutput *= 0.9 + (0.2 * RANDOM.nextDouble());
-
-        // Multiplizierung mit Anzahl der Zellen, Effizienz
-        powerOutput *= numberOfCells * cellEfficiency;
-
-        System.out.println("Power output: " + powerOutput);
-
-        setPowerGeneration(powerOutput);
     }
 }

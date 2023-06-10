@@ -1,7 +1,7 @@
 package de.fhdo.SmartGrid.service;
 
-import de.fhdo.SmartGrid.Components.TimeObserver;
-import de.fhdo.SmartGrid.Components.TimeSimulationComponent;
+import de.fhdo.SmartGrid.Observer.TimeObserver;
+import de.fhdo.SmartGrid.Observer.TimeSimulationService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -13,10 +13,10 @@ public class EnergyService implements TimeObserver {
     private final EnergyProducerService energyProducerService;
     private final EnergyConsumerService energyConsumerService;
     private final EnergyStorageService energyStorageService;
-    private final TimeSimulationComponent timeSimulationComponent;
+    private final TimeSimulationService timeSimulationComponent;
 
     @Autowired
-    public EnergyService(TimeSimulationComponent timeSimulationComponent, EnergyProducerService energyProducerService, EnergyConsumerService energyConsumerService, EnergyStorageService energyStorageService) {
+    public EnergyService(TimeSimulationService timeSimulationComponent, EnergyProducerService energyProducerService, EnergyConsumerService energyConsumerService, EnergyStorageService energyStorageService) {
         this.energyProducerService = energyProducerService;
         this.energyConsumerService = energyConsumerService;
         this.energyStorageService = energyStorageService;

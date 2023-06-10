@@ -1,7 +1,7 @@
 package de.fhdo.SmartGrid.service;
 
-import de.fhdo.SmartGrid.Components.TimeObserver;
-import de.fhdo.SmartGrid.Components.TimeSimulationComponent;
+import de.fhdo.SmartGrid.Observer.TimeObserver;
+import de.fhdo.SmartGrid.Observer.TimeSimulationService;
 import de.fhdo.SmartGrid.model.WeatherModel;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import java.time.Instant;
 @Service
 public class WeatherService implements TimeObserver {
 
-    private final TimeSimulationComponent timeSimulationComponent;
+    private final TimeSimulationService timeSimulationComponent;
 
     private WeatherModel currentWeather;
 
     @Autowired
-    public WeatherService(TimeSimulationComponent timeSimulationComponent) {
+    public WeatherService(TimeSimulationService timeSimulationComponent) {
         this.timeSimulationComponent = timeSimulationComponent;
     }
 

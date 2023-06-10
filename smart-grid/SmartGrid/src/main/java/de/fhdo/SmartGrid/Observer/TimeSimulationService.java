@@ -1,4 +1,4 @@
-package de.fhdo.SmartGrid.Components;
+package de.fhdo.SmartGrid.Observer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -7,13 +7,14 @@ import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class TimeSimulationComponent implements CommandLineRunner {
+@Service
+public class TimeSimulationService implements CommandLineRunner {
     private Instant CurrentTime;
     private List<TimeObserver> timeObservers = new ArrayList<>();
 
