@@ -30,6 +30,7 @@ public class SolarParkService {
         repository.deleteById(id);
     }
 
+    /*
     public double calculateEfficiency(WeatherModel weatherModel) {
         double efficiency;
 
@@ -41,4 +42,5 @@ public class SolarParkService {
         }
         return efficiency;
     }
+     */
 }

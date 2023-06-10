@@ -45,14 +45,17 @@ public class SolarPark extends EnergyProducer {
         int cloudiness = weather.getCloud();
 
         // Stromerzeugung basierend auf Temperatur
-        double powerGeneration = temp / 100;
+        double powerOutput = temp / 100;
 
         // Einfluss der Wolken
-        powerGeneration *= (1 - cloudiness / 100.0);
+        powerOutput *= (1 - cloudiness / 100.0);
 
         // Zufällige Schwankung von -10% bis +10%
-        powerGeneration *= 0.9 + (0.2 * RANDOM.nextDouble());
+        powerOutput *= 0.9 + (0.2 * RANDOM.nextDouble());
 
-        setPowerGeneration(powerGeneration);
+        // Multiplizierung mit Anzahl der Zellen, Effizienz
+        powerOutput *= numberOfCells * cellEfficiency;
+
+        setPowerGeneration(powerOutput);
     }
 }

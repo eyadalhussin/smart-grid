@@ -1,6 +1,4 @@
 package de.fhdo.SmartGrid.model;
-
-
 import de.fhdo.SmartGrid.service.WeatherService;
 import jakarta.persistence.Entity;
 
@@ -18,10 +16,6 @@ public class WindPark extends EnergyProducer {
 
     public WindPark(String name) {
         super(name);
-    }
-
-    @Override
-    public void calculateCurrentPowerGeneration(WeatherService weatherService) {
     }
 
     public int getNumberOfTurbines() {
@@ -46,5 +40,18 @@ public class WindPark extends EnergyProducer {
 
     public void setTurbineDiameter(double turbineDiameter) {
         this.turbineDiameter = turbineDiameter;
+    }
+
+    @Override
+    public void calculateCurrentPowerGeneration(WeatherService weatherService){
+        System.out.println("WindPark.calculateCurrentPowerGeneration");
+        WeatherModel weather = weatherService.getCurrentWeather();
+
+        double area = Math.PI * Math.pow(getTurbineDiameter() / 2, 2);
+
+        //Formel Betz'sche Gesetz 0.5 * ρ * A * v³ * η, Luftdichte i.d.R. 1.225 kg/m³
+        double powerOutput = 0.5 * 1.225 * area * Math.pow(weather.getWindSpeed(), 3) * getTurbineEfficiency();
+
+        setPowerGeneration(powerOutput);
     }
 }
