@@ -6,6 +6,7 @@ import de.fhdo.SmartGrid.repository.EnergyStorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +47,20 @@ public class EnergyStorageService {
     }
 
     public void distributeEnergy(double amount) {
+        List<EnergyStorage> allEnergyStorages = energyStorageRepository.findAll();
 
+        double amountPerStorage = amount / allEnergyStorages.size();
+
+        for (EnergyStorage storage : allEnergyStorages) {
+            double newChargeLevel = storage.getChargeLevel() + amountPerStorage;
+
+            if (newChargeLevel > storage.getCapacity()) {
+                storage.setChargeLevel(storage.getCapacity());
+            } else {
+                storage.setChargeLevel(newChargeLevel);
+            }
+            energyStorageRepository.save(storage);
+        }
     }
 
     public void deleteEnergyStorage(Long id) {
