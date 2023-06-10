@@ -47,6 +47,8 @@ public class EnergyStorageService {
     }
 
     public void distributeEnergy(double amount) {
+        //Kleinen Storages weniger füllen wie die Größeren.
+        //Output, wie viel in welchen Storage geladen wurde.
         List<EnergyStorage> allEnergyStorages = energyStorageRepository.findAll();
 
         double amountPerStorage = amount / allEnergyStorages.size();
