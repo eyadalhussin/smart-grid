@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/windturbine")
-public class WindTurbineController {
+@RequestMapping(path = "/api/windpark")
+public class WindParkController {
 
     private final WindParkService windTurbineService;
 
 
     @Autowired
-    public WindTurbineController(WindParkService windTurbineService) {
+    public WindParkController(WindParkService windTurbineService) {
         this.windTurbineService = windTurbineService;
     }
 

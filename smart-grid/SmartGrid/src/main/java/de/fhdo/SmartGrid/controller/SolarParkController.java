@@ -21,8 +21,8 @@ public class SolarParkController {
         return solarParkService.findAll().toString();
     }
 
-    @PostMapping("/add")
-    public void addSolarPark(@RequestBody SolarPark solarPark) {
-        solarParkService.addSolarPark(solarPark);
+    @PostMapping
+    public SolarPark addSolarPark(@RequestBody SolarPark solarPark) {
+        return solarParkService.addSolarPark(solarPark);
     }
 }

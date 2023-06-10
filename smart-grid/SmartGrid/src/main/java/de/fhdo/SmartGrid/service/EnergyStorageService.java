@@ -27,7 +27,7 @@ public class EnergyStorageService {
         return energyStorageRepository.findById(id);
     }
 
-    public EnergyStorage createEnergyStorage(EnergyStorage energyStorage) {
+    public EnergyStorage addEnergyStorage(EnergyStorage energyStorage) {
         return energyStorageRepository.save(energyStorage);
     }
 
@@ -43,6 +43,10 @@ public class EnergyStorageService {
         } else {
             return null;
         }
+    }
+
+    public void distributeEnergy(double amount) {
+
     }
 
     public void deleteEnergyStorage(Long id) {

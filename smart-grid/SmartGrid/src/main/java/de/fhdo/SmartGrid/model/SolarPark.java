@@ -65,6 +65,8 @@ public class SolarPark extends EnergyProducer {
         // Multiplizierung mit Anzahl der Zellen, Effizienz
         powerOutput *= numberOfCells * cellEfficiency;
 
+        System.out.println("Power output: " + powerOutput);
+
         setPowerGeneration(powerOutput);
     }
 }

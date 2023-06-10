@@ -52,6 +52,7 @@ public class WindPark extends EnergyProducer {
         //Formel Betz'sche Gesetz 0.5 * ρ * A * v³ * η, Luftdichte i.d.R. 1.225 kg/m³
         double powerOutput = 0.5 * 1.225 * area * Math.pow(weather.getWindSpeed(), 3) * getTurbineEfficiency();
 
+        System.out.println("WindPark.calculateCurrentPowerGeneration: " + powerOutput);
         setPowerGeneration(powerOutput);
     }
 }

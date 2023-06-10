@@ -33,6 +33,8 @@ public class ConventionalPowerPlant extends EnergyProducer{
         System.out.println("ConventionalPowerPlant.calculateCurrentPowerGeneration");
         double basePowerOutput = 100;
         double powerOutput = (basePowerOutput * fuelType.getEfficiency()) * getNumberOfGenerators();
+
+        System.out.println("ConventionalPowerPlant.calculateCurrentPowerGeneration: " + powerOutput);
         setPowerGeneration(powerOutput);
     }
 

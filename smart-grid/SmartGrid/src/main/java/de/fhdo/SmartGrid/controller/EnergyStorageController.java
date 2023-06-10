@@ -23,12 +23,9 @@ public class EnergyStorageController {
         return energyStorageService.getAllEnergyStorages();
     }
 
-    @GetMapping("/addtest")
-    public EnergyStorage createEnergyStorageTest() {
-        EnergyStorage energyStorage = new EnergyStorage();
-        energyStorage.setName("Test Energy Storage");
-        energyStorage.setCapacity(100);
-        energyStorage.setChargeLevel(50);
-        return energyStorageService.createEnergyStorage(energyStorage);
+
+    @PostMapping
+    public EnergyStorage createEnergyStorageTest(@RequestBody EnergyStorage energyStorage) {
+        return energyStorageService.addEnergyStorage(energyStorage);
     }
 }

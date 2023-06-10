@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @Scope("singleton")
-public class EnergyProducerService implements TimeObserver {
+public class EnergyProducerService {
 
     private final TimeSimulationComponent timeSimulationComponent;
     private final WeatherService weatherService;
@@ -33,21 +33,19 @@ public class EnergyProducerService implements TimeObserver {
     @PostConstruct
     public void init() {
         energyProducers.addAll(energyProducerRepository.findAll());
-        timeSimulationComponent.registerObserver(this);
     }
 
-    public void setCurrentEnergyGeneration(double currentEnergyGeneration) {
-        this.currentEnergyGeneration = currentEnergyGeneration;
-    }
-
-    @Override
-    public void timeUpdated() {
+    public double calculateCurrentEnergyGeneration() {
         currentEnergyGeneration = 0;
         for (EnergyProducer energyProducer : energyProducers) {
             energyProducer.calculateCurrentPowerGeneration(weatherService);
             currentEnergyGeneration += energyProducer.getCurrentPowerGeneration();
         }
-        System.out.printf("Current Energy generation: %.2f kWh%n", currentEnergyGeneration);
+        return currentEnergyGeneration;
+    }
+
+    public double getCurrentEnergyGeneration() {
+        return currentEnergyGeneration;
     }
 
     public void addEnergyProducer(EnergyProducer energyProducer) {
