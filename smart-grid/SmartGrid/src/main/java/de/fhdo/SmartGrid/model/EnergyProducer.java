@@ -45,6 +45,10 @@ public abstract class EnergyProducer {
         this.capacity = capacity;
     }
 
+    public void setPowerGeneration(double powerGeneration) {
+        this.currentPowerGeneration = powerGeneration;
+    }
+
     public abstract void calculateCurrentPowerGeneration(WeatherService weatherService);
 
     public double getCurrentPowerGeneration() {
