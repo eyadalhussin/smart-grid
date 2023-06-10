@@ -1,5 +1,6 @@
 package de.fhdo.SmartGrid.model;
 
+import de.fhdo.SmartGrid.service.WeatherService;
 import jakarta.persistence.*;
 
 @Entity
@@ -44,7 +45,7 @@ public abstract class EnergyProducer {
         this.capacity = capacity;
     }
 
-    public abstract void calculateCurrentPowerGeneration();
+    public abstract void calculateCurrentPowerGeneration(WeatherService weatherService);
 
     public double getCurrentPowerGeneration() {
         return currentPowerGeneration;

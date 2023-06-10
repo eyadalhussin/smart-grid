@@ -1,4 +1,5 @@
 package de.fhdo.SmartGrid.model;
+import de.fhdo.SmartGrid.service.WeatherService;
 import jakarta.persistence.Entity;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,9 +16,9 @@ public class SolarPark extends EnergyProducer {
     }
 
     @Override
-    public void calculateCurrentPowerGeneration() {
-        RestTemplate restTemplate = new RestTemplate();
+    public void calculateCurrentPowerGeneration(WeatherService weatherService) {
 
     }
+
 
 }

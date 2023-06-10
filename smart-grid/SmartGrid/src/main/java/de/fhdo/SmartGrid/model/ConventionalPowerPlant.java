@@ -1,41 +1,23 @@
 package de.fhdo.SmartGrid.model;
 
+import de.fhdo.SmartGrid.service.WeatherService;
 import jakarta.persistence.Entity;
 
 @Entity
 public class ConventionalPowerPlant extends EnergyProducer{
-    private FuelType fuelType;
-    private double efficiency;
 
     public ConventionalPowerPlant() {
     }
 
     @Override
-    public void calculateCurrentPowerGeneration() {
+    public void calculateCurrentPowerGeneration(WeatherService weatherService) {
 
     }
 
     public ConventionalPowerPlant(String name, double capacity, FuelType fuelType, double efficiency) {
         super(name, capacity);
-        this.fuelType = fuelType;
-        this.efficiency = efficiency;
     }
 
-    public String getFuelType() {
-        return fuelType.name();
-    }
-
-    public void setFuelType(FuelType fuelType) {
-        this.fuelType = fuelType;
-    }
-
-    public double getEfficiency() {
-        return efficiency;
-    }
-
-    public void setEfficiency(double efficiency) {
-        this.efficiency = efficiency;
-    }
 
     @Override
     public String toString() {
@@ -43,8 +25,6 @@ public class ConventionalPowerPlant extends EnergyProducer{
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
                 ", capacity=" + getCapacity() +
-                ", fuelType='" + fuelType + '\'' +
-                ", efficiency=" + efficiency +
                 '}';
     }
 }
