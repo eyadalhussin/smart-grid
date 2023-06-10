@@ -1,6 +1,6 @@
 package de.fhdo.SmartGrid.model;
-
 import jakarta.persistence.Entity;
+import org.springframework.web.client.RestTemplate;
 
 @Entity
 public class SolarPark extends EnergyProducer {
@@ -10,22 +10,14 @@ public class SolarPark extends EnergyProducer {
 
     }
 
-    @Override
-    protected void calculateCurrentPowerGeneration() {
-
-    }
-
     public SolarPark(String name, double capacity) {
         super(name, capacity);
     }
 
     @Override
-    public String toString() {
-        return "SolarPark{" +
-                "id=" + getId() +
-                ", name='" + getName() + '\'' +
-                ", capacity=" + getCapacity() +
-                '}';
+    protected void calculateCurrentPowerGeneration() {
+        RestTemplate restTemplate = new RestTemplate();
+
     }
 
 }
