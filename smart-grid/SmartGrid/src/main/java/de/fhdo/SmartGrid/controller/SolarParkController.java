@@ -24,12 +24,4 @@ public class SolarParkController {
     public String all() {
         return solarParkService.findAll().toString();
     }
-
-
-    @GetMapping("/{city}/efficiency")
-    public double getSolarPanelEfficiencyByCity(@PathVariable String city,
-                                                @RequestParam(value = "timestamp", required = false) Long timestamp) {
-        WeatherModel weatherModel = weatherService.getWeatherByCity(city);
-        return solarParkService.calculateEfficiency(weatherModel);
-    }
 }

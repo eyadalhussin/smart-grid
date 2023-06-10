@@ -13,6 +13,31 @@ public class WeatherModel {
     @JsonProperty("tempMin")
     private double tempMin;
 
+    @Override
+    public String toString() {
+        return "WeatherModel{" +
+                "id=" + id +
+                ", temp=" + temp +
+                ", tempMin=" + tempMin +
+                ", tempMax=" + tempMax +
+                ", feelsLike=" + feelsLike +
+                ", pressure=" + pressure +
+                ", humidity=" + humidity +
+                ", dewPoint=" + dewPoint +
+                ", cloud=" + cloud +
+                ", weatherId=" + weatherId +
+                ", weatherName='" + weatherName + '\'' +
+                ", weatherDesc='" + weatherDesc + '\'' +
+                ", weatherIcon='" + weatherIcon + '\'' +
+                ", visibility=" + visibility +
+                ", windSpeed=" + windSpeed +
+                ", windDeg=" + windDeg +
+                ", windGust=" + windGust +
+                ", rain1h=" + rain1h +
+                ", snow1h=" + snow1h +
+                '}';
+    }
+
     @JsonProperty("tempMax")
     private double tempMax;
 

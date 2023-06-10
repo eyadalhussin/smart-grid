@@ -15,7 +15,7 @@ public class SolarPark extends EnergyProducer {
     }
 
     @Override
-    protected void calculateCurrentPowerGeneration() {
+    public void calculateCurrentPowerGeneration() {
         RestTemplate restTemplate = new RestTemplate();
 
     }

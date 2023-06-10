@@ -1,23 +1,33 @@
-package de.fhdo.SmartGrid.Components;
+package de.fhdo.SmartGrid.service;
 
+import de.fhdo.SmartGrid.Components.TimeObserver;
+import de.fhdo.SmartGrid.Components.TimeSimulationComponent;
 import de.fhdo.SmartGrid.model.EnergyProducer;
 import jakarta.annotation.PostConstruct;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class EnergyProducerHandler implements TimeObserver{
+@Service
+@Scope("singleton")
+public class EnergyProducerService implements TimeObserver {
+
+    private TimeSimulationComponent timeSimulationComponent;
+
+    @Autowired
+    public EnergyProducerService(TimeSimulationComponent timeSimulationComponent) {
+        this.timeSimulationComponent = timeSimulationComponent;
+    }
 
     private double currentEnergyGeneration;
     private List<EnergyProducer> energyProducers = new ArrayList<>();
 
     @PostConstruct
     public void init() {
-        //Get database entries for energy producers
-
-        TimeSimulation.registerObserver(this);
+        timeSimulationComponent.registerObserver(this);
     }
 
     public void setCurrentEnergyGeneration(double currentEnergyGeneration) {

@@ -1,34 +1,59 @@
 package de.fhdo.SmartGrid.service;
 
+import de.fhdo.SmartGrid.Components.TimeObserver;
+import de.fhdo.SmartGrid.Components.TimeSimulationComponent;
 import de.fhdo.SmartGrid.model.WeatherModel;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.Instant;
+
 @Service
-public class WeatherService {
+public class WeatherService implements TimeObserver {
 
-    // deprecated
-    private final String apiKey = "697cbcb87d9cc74acc9a0987026f06f1";
-    private final String apiUrl = "http://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}";
+    private final TimeSimulationComponent timeSimulationComponent;
 
-    ///////////////////////////////////
-    private RestTemplate restTemplate;
-    private final String weatherApiUrl = "http://159.89.104.105:8080/api/wetterdaten/now";
+    private WeatherModel currentWeather;
 
+    @Autowired
+    public WeatherService(TimeSimulationComponent timeSimulationComponent) {
+        this.timeSimulationComponent = timeSimulationComponent;
+    }
 
-    public WeatherModel getWeatherByCity(String city) {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<WeatherModel> response = restTemplate.getForEntity(apiUrl, WeatherModel.class, city, apiKey);
-        return response.getBody();
+    private Instant lastWeatherUpdate = null;
+
+    @PostConstruct
+    public void init() {
+        timeSimulationComponent.registerObserver(this);
+        setLocalWeather();
+    }
+
+    public WeatherModel getCurrentWeather() {
+        return currentWeather;
     }
 
 
-    public WeatherModel getLocalWeather(){
+    private void setLocalWeather() {
         RestTemplate restTemplate = new RestTemplate();
+        String weatherApiUrl = "https://icecreamparty.de/api/wetterdaten/now";
         ResponseEntity<WeatherModel> response = restTemplate.getForEntity(weatherApiUrl, WeatherModel.class);
-        return response.getBody();
+        currentWeather = response.getBody();
+    }
+
+    @Override
+    public void timeUpdated() {
+        if (lastWeatherUpdate == null) {
+            lastWeatherUpdate = timeSimulationComponent.getCurrentTime();
+            return;
+        }
+
+        if (timeSimulationComponent.getCurrentTime().getEpochSecond() - lastWeatherUpdate.getEpochSecond() >= 60) {
+            lastWeatherUpdate = timeSimulationComponent.getCurrentTime();
+            setLocalWeather();
+        }
     }
 }
 

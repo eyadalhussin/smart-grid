@@ -13,15 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class TimeSimulation implements CommandLineRunner {
-    public static Instant CurrentTime;
-    private static List<TimeObserver> timeObservers = new ArrayList<>();
+public class TimeSimulationComponent implements CommandLineRunner {
+    private Instant CurrentTime;
+    private List<TimeObserver> timeObservers = new ArrayList<>();
 
-    public static void registerObserver(TimeObserver observer) {
+    public void registerObserver(TimeObserver observer) {
         timeObservers.add(observer);
     }
 
-    public static void unregisterObserver(TimeObserver observer) {
+    public void unregisterObserver(TimeObserver observer) {
         timeObservers.remove(observer);
     }
     @Override
@@ -63,6 +63,10 @@ public class TimeSimulation implements CommandLineRunner {
                 e.printStackTrace();
             }
         });
+    }
+
+    public Instant getCurrentTime() {
+        return CurrentTime;
     }
 
     // Klasse zum Empfangen der JSON-Daten
