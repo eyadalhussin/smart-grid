@@ -6,6 +6,25 @@ import jakarta.persistence.Entity;
 @Entity
 public class ConventionalPowerPlant extends EnergyProducer{
 
+    private FuelType fuelType;
+    private int numberOfGenerators;
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public int getNumberOfGenerators() {
+        return numberOfGenerators;
+    }
+
+    public void setNumberOfGenerators(int numberOfGenerators) {
+        this.numberOfGenerators = numberOfGenerators;
+    }
+
     public ConventionalPowerPlant() {
     }
 
