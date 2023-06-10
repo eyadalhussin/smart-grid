@@ -46,7 +46,8 @@ public abstract class EnergyProducer {
     public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
-    protected abstract void calculateCurrentPowerGeneration();
+
+    protected abstract void setCurrentPowerGeneration();
 
     public double getCurrentPowerGeneration() {
         return currentPowerGeneration;
