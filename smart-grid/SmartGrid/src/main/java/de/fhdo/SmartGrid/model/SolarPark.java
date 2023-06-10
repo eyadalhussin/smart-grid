@@ -11,7 +11,7 @@ public class SolarPark extends EnergyProducer {
     }
 
     @Override
-    protected void setCurrentPowerGeneration() {
+    protected void calculateCurrentPowerGeneration() {
 
     }
 

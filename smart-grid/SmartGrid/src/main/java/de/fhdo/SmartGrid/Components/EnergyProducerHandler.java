@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EnergyHandler implements TimeObserver{
+public class EnergyProducerHandler implements TimeObserver{
 
     private double currentEnergyGeneration;
     private List<EnergyProducer> energyProducers = new ArrayList<>();
@@ -26,6 +26,11 @@ public class EnergyHandler implements TimeObserver{
 
     @Override
     public void timeUpdated() {
+        currentEnergyGeneration = 0;
+        for (EnergyProducer energyProducer : energyProducers) {
+            energyProducer.calculateCurrentPowerGeneration();
+            currentEnergyGeneration += energyProducer.getCurrentPowerGeneration();
+        }
         System.out.printf("Current Energy generation: %.2f kWh%n", currentEnergyGeneration);
     }
 }

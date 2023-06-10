@@ -36,11 +36,7 @@ public class WindTurbineService {
 
         double totalPowerOutput = 0;
         Iterable<WindTurbine> windTurbines = windTurbineRepository.findAll();
-        for (WindTurbine windTurbine : windTurbines) {
-            windTurbine.setWindSpeed(windSpeed);
-            windTurbineRepository.save(windTurbine);
-            totalPowerOutput += windTurbine.getCapacity() * windSpeed * windTurbine.getEfficiency(); //Berechnung anpassen??
-        }
+        windTurbineRepository.saveAll(windTurbines);
         return totalPowerOutput;
     }
 
