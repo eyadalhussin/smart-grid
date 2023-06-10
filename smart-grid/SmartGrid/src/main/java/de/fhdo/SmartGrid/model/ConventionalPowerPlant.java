@@ -30,7 +30,7 @@ public class ConventionalPowerPlant extends EnergyProducer{
 
     @Override
     public void calculateCurrentPowerGeneration(WeatherService weatherService) {
-
+        System.out.println("ConventionalPowerPlant.calculateCurrentPowerGeneration");
         double basePowerOutput = 100;
         double powerOutput = (basePowerOutput * fuelType.getEfficiency()) * getNumberOfGenerators();
         setPowerGeneration(powerOutput);
