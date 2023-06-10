@@ -1,7 +1,6 @@
 package de.fhdo.SmartGrid.service;
 
-import de.fhdo.SmartGrid.model.WeatherModel;
-import de.fhdo.SmartGrid.model.WindTurbine;
+import de.fhdo.SmartGrid.model.WindPark;
 import de.fhdo.SmartGrid.repository.WindTurbineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +19,11 @@ public class WindTurbineService {
         this.weatherService = weatherService;
     }
 
-    public List<WindTurbine> getWindTurbines() {
+    public List<WindPark> getWindTurbines() {
         return windTurbineRepository.findAll();
     }
 
-    public WindTurbine save(WindTurbine windTurbine) {
+    public WindPark save(WindPark windTurbine) {
         return windTurbineRepository.save(windTurbine);
     }
 

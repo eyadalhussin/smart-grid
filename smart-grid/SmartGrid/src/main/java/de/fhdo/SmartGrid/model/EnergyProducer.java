@@ -4,21 +4,19 @@ import de.fhdo.SmartGrid.service.WeatherService;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class EnergyProducer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private long id;
     private String name;
-    private double capacity;
     protected double currentPowerGeneration;
     public EnergyProducer() {
     }
 
-    public EnergyProducer(String name, double capacity) {
+    public EnergyProducer(String name) {
         this.name = name;
-        this.capacity = capacity;
     }
 
     public long getId() {
@@ -37,13 +35,6 @@ public abstract class EnergyProducer {
         this.name = name;
     }
 
-    public double getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(double capacity) {
-        this.capacity = capacity;
-    }
 
     public void setPowerGeneration(double powerGeneration) {
         this.currentPowerGeneration = powerGeneration;

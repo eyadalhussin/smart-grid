@@ -5,19 +5,18 @@ import de.fhdo.SmartGrid.service.WeatherService;
 import jakarta.persistence.Entity;
 
 @Entity
-public class WindTurbine extends EnergyProducer {
+public class WindPark extends EnergyProducer {
 
-    public WindTurbine() {
+    public WindPark() {
 
     }
 
-    public WindTurbine(String name, double capacity) {
-        super(name, capacity);
+    public WindPark(String name) {
+        super(name);
     }
 
     @Override
     public void calculateCurrentPowerGeneration(WeatherService weatherService) {
-
     }
 
 }

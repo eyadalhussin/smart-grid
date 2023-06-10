@@ -12,8 +12,8 @@ public class SolarPark extends EnergyProducer {
 
     }
 
-    public SolarPark(String name, double capacity) {
-        super(name, capacity);
+    public SolarPark(String name) {
+        super(name);
     }
 
     @Override

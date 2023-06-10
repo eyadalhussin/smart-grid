@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/solarpark")
 public class SolarParkController {
 
-    @Autowired
-    private SolarParkService solarParkService;
+    private final SolarParkService solarParkService;
     private final WeatherService weatherService;
 
-    public SolarParkController(SolarParkService solarParkService, WeatherService weatherService) {
-        this.solarParkService = solarParkService;
+    @Autowired
+    public SolarParkController(SolarParkService solarParkService, WeatherService weatherService){
         this.weatherService = weatherService;
+        this.solarParkService = solarParkService;
     }
 
     @GetMapping("/all")

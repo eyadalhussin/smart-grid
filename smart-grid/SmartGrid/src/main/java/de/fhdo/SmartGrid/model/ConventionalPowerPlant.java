@@ -11,11 +11,11 @@ public class ConventionalPowerPlant extends EnergyProducer{
 
     @Override
     public void calculateCurrentPowerGeneration(WeatherService weatherService) {
-
+        currentPowerGeneration = 100d;
     }
 
-    public ConventionalPowerPlant(String name, double capacity, FuelType fuelType, double efficiency) {
-        super(name, capacity);
+    public ConventionalPowerPlant(String name) {
+        super(name);
     }
 
 
@@ -24,7 +24,6 @@ public class ConventionalPowerPlant extends EnergyProducer{
         return "ConventionalPowerPlant{" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
-                ", capacity=" + getCapacity() +
                 '}';
     }
 }

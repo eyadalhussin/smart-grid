@@ -1,11 +1,8 @@
 package de.fhdo.SmartGrid.controller;
 
-import de.fhdo.SmartGrid.model.WindTurbine;
-import de.fhdo.SmartGrid.service.WeatherService;
+import de.fhdo.SmartGrid.model.WindPark;
 import de.fhdo.SmartGrid.service.WindTurbineService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +20,12 @@ public class WindTurbineController {
     }
 
     @GetMapping("/all")
-    public List<WindTurbine> getWindTurbines() {
+    public List<WindPark> getWindTurbines() {
         return windTurbineService.getWindTurbines();
     }
 
     @PostMapping
-    public WindTurbine addWindTurbine(@RequestBody WindTurbine windTurbine) {
+    public WindPark addWindTurbine(@RequestBody WindPark windTurbine) {
         return windTurbineService.save(windTurbine);
     }
 
