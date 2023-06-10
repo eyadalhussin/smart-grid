@@ -14,7 +14,7 @@ public class WindTurbine extends EnergyProducer {
     }
 
     @Override
-    protected void calculateCurrentPowerGeneration() {
+    protected void setCurrentPowerGeneration() {
 
     }
 

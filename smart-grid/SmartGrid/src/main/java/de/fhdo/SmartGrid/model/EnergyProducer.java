@@ -1,9 +1,6 @@
 package de.fhdo.SmartGrid.model;
 
-import de.fhdo.SmartGrid.Components.EnergyHandler;
-import de.fhdo.SmartGrid.Components.TimeObserver;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
