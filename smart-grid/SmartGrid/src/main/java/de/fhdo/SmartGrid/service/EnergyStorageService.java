@@ -6,14 +6,13 @@ import de.fhdo.SmartGrid.repository.EnergyStorageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EnergyStorageService {
 
-    private EnergyStorageRepository energyStorageRepository;
+    private final EnergyStorageRepository energyStorageRepository;
 
     @Autowired
     public EnergyStorageService(EnergyStorageRepository energyStorageRepository) {
@@ -63,6 +62,20 @@ public class EnergyStorageService {
             }
             energyStorageRepository.save(storage);
         }
+    }
+
+    public double calculateCurrentEnergyStorage() {
+        return energyStorageRepository.findAll()
+                .stream()
+                .mapToDouble(EnergyStorage::getChargeLevel)
+                .sum();
+    }
+
+    public double getPercentageFillRate() {
+        List<EnergyStorage> allEnergyStorages = energyStorageRepository.findAll();
+        double totalCapacity = allEnergyStorages.stream().mapToDouble(EnergyStorage::getCapacity).sum();
+        double totalChargeLevel = allEnergyStorages.stream().mapToDouble(EnergyStorage::getChargeLevel).sum();
+        return totalChargeLevel / totalCapacity;
     }
 
     public void deleteEnergyStorage(Long id) {

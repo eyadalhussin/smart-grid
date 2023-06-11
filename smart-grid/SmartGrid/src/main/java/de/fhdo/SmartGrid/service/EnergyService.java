@@ -1,7 +1,6 @@
 package de.fhdo.SmartGrid.service;
 
 import de.fhdo.SmartGrid.Observer.TimeObserver;
-import de.fhdo.SmartGrid.Observer.TimeSimulationService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

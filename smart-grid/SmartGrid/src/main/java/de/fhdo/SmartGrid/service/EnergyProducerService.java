@@ -1,6 +1,5 @@
 package de.fhdo.SmartGrid.service;
 
-import de.fhdo.SmartGrid.Observer.TimeSimulationService;
 import de.fhdo.SmartGrid.model.EnergyProducer;
 import de.fhdo.SmartGrid.repository.EnergyProducerRepository;
 import de.fhdo.SmartGrid.strategies.PowerGenerationStrategy;
@@ -19,19 +18,15 @@ import java.util.stream.Collectors;
 @Scope("singleton")
 public class EnergyProducerService {
 
-    private final TimeSimulationService timeSimulationComponent;
     private final WeatherService weatherService;
     private final List<EnergyProducer> energyProducers = new ArrayList<>();
     private final EnergyProducerRepository energyProducerRepository;
-    private double currentEnergyGeneration;
     private final Map<Class<? extends EnergyProducer>, PowerGenerationStrategy> strategies;
 
     @Autowired
-    public EnergyProducerService(TimeSimulationService timeSimulationComponent,
-                                 WeatherService weatherService,
+    public EnergyProducerService(WeatherService weatherService,
                                  EnergyProducerRepository energyProducerRepository,
                                  List<PowerGenerationStrategy> strategies) {
-        this.timeSimulationComponent = timeSimulationComponent;
         this.weatherService = weatherService;
         this.energyProducerRepository = energyProducerRepository;
         this.strategies = strategies.stream()
@@ -44,21 +39,13 @@ public class EnergyProducerService {
     }
 
     public double calculateCurrentEnergyGeneration() {
-        currentEnergyGeneration = 0;
+        double currentEnergyGeneration = 0; // in kWh
         for (EnergyProducer energyProducer : energyProducers) {
             PowerGenerationStrategy strategy = strategies.get(energyProducer.getClass());
             double powerGeneration = strategy.calculateCurrentPowerGeneration(energyProducer, weatherService);
             energyProducer.setCurrentPowerGeneration(powerGeneration);
             currentEnergyGeneration += powerGeneration;
         }
-        return currentEnergyGeneration;
-    }
-
-    private PowerGenerationStrategy selectStrategyFor(EnergyProducer energyProducer) {
-        return null;
-    }
-
-    public double getCurrentEnergyGeneration() {
         return currentEnergyGeneration;
     }
 

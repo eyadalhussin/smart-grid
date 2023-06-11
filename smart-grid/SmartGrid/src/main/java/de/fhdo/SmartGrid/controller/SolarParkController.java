@@ -16,12 +16,12 @@ public class SolarParkController {
         this.solarParkService = solarParkService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public String all() {
         return solarParkService.findAll().toString();
     }
 
-    @PostMapping
+    @PutMapping
     public SolarPark addSolarPark(@RequestBody SolarPark solarPark) {
         return solarParkService.addSolarPark(solarPark);
     }

@@ -19,12 +19,12 @@ public class WindParkController {
         this.windTurbineService = windTurbineService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<WindPark> getWindTurbines() {
         return windTurbineService.getWindTurbines();
     }
 
-    @PostMapping
+    @PutMapping
     public WindPark addWindTurbine(@RequestBody WindPark windTurbine) {
         return windTurbineService.addWindPark(windTurbine);
     }

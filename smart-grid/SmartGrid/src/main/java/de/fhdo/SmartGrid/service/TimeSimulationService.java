@@ -1,7 +1,8 @@
-package de.fhdo.SmartGrid.Observer;
+package de.fhdo.SmartGrid.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import de.fhdo.SmartGrid.Observer.TimeObserver;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;

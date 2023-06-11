@@ -18,13 +18,13 @@ public class EnergyStorageController {
         this.energyStorageService = energyStorageService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<EnergyStorage> getAllEnergyStorages() {
         return energyStorageService.getAllEnergyStorages();
     }
 
 
-    @PostMapping
+    @PutMapping
     public EnergyStorage createEnergyStorageTest(@RequestBody EnergyStorage energyStorage) {
         return energyStorageService.addEnergyStorage(energyStorage);
     }
