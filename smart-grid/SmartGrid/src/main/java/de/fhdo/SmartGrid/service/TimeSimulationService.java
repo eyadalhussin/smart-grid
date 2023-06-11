@@ -7,7 +7,6 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.*;
@@ -17,7 +16,7 @@ import java.util.List;
 @Service
 public class TimeSimulationService implements CommandLineRunner {
     private Instant CurrentTime;
-    private List<TimeObserver> timeObservers = new ArrayList<>();
+    private final List<TimeObserver> timeObservers = new ArrayList<>();
 
     public void registerObserver(TimeObserver observer) {
         timeObservers.add(observer);

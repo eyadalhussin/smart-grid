@@ -1,4 +1,4 @@
-package de.fhdo.SmartGrid.model;
+package de.fhdo.SmartGrid.enums;
 
 public enum FuelType {
     OIL {

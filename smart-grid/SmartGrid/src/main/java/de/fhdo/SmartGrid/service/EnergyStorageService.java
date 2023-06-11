@@ -55,11 +55,7 @@ public class EnergyStorageService {
         for (EnergyStorage storage : allEnergyStorages) {
             double newChargeLevel = storage.getChargeLevel() + amountPerStorage;
 
-            if (newChargeLevel > storage.getCapacity()) {
-                storage.setChargeLevel(storage.getCapacity());
-            } else {
-                storage.setChargeLevel(newChargeLevel);
-            }
+            storage.setChargeLevel(Math.min(newChargeLevel, storage.getCapacity()));
             energyStorageRepository.save(storage);
         }
     }

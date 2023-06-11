@@ -11,7 +11,6 @@ import java.time.ZoneId;
 
 @Service
 public class TarifService {
-    private final TarifRepository tarifRepository;
     private final EnergyProducerService energyProducerService;
     private final EnergyConsumerService energyConsumerService;
     private final EnergyStorageService energyStorageService;
@@ -19,7 +18,6 @@ public class TarifService {
     private final EmergencyService emergencyService;
     @Autowired
     public TarifService(TarifRepository tarifRepository, EnergyProducerService energyProducerService, EnergyConsumerService energyConsumerService, EnergyStorageService energyStorageService, TimeSimulationService timeSimulationComponent, EmergencyService emergencyService) {
-        this.tarifRepository = tarifRepository;
         this.energyProducerService = energyProducerService;
         this.energyConsumerService = energyConsumerService;
         this.energyStorageService = energyStorageService;

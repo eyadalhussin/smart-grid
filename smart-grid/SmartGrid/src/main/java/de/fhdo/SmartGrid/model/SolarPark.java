@@ -1,5 +1,4 @@
 package de.fhdo.SmartGrid.model;
-import de.fhdo.SmartGrid.service.WeatherService;
 import jakarta.persistence.Entity;
 import java.util.Random;
 

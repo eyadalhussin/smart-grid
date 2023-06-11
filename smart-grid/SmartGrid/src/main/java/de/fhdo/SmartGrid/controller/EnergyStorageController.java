@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/api/energystorages")
 public class EnergyStorageController {
 
-    private EnergyStorageService energyStorageService;
+    private final EnergyStorageService energyStorageService;
 
     @Autowired
     public EnergyStorageController(EnergyStorageService energyStorageService) {

@@ -4,7 +4,8 @@ public enum EmergencyLevel {
     NONE,
     LOW,
     MEDIUM,
-    HIGH;
+    HIGH,
+    CRITICAL;
 
     public EmergencyLevel next() {
         return values()[(ordinal() + 1) % values().length];

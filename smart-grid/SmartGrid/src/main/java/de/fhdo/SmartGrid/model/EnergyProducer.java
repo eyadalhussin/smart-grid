@@ -1,7 +1,5 @@
 package de.fhdo.SmartGrid.model;
 
-import de.fhdo.SmartGrid.service.WeatherService;
-import de.fhdo.SmartGrid.strategies.PowerGenerationStrategy;
 import jakarta.persistence.*;
 
 @Entity

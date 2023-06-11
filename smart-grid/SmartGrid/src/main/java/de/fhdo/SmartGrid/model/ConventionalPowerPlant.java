@@ -1,6 +1,6 @@
 package de.fhdo.SmartGrid.model;
 
-import de.fhdo.SmartGrid.service.WeatherService;
+import de.fhdo.SmartGrid.enums.FuelType;
 import jakarta.persistence.Entity;
 
 @Entity
