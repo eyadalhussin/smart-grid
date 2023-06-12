@@ -1,0 +1,99 @@
+:host(app-dashboard){
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.mainContainer{
+    min-height: 1000px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.4fr 2fr 3fr 3fr 3fr 3fr;
+    grid-template-areas: 
+    'h'
+    'w'
+    'd'
+    't'
+    'ev'
+    'ee'
+    ;
+    grid-gap: 2em;
+    padding: 2em 5em 5em 5em;
+    background-color: var(--backgroundPrim);
+    -ms-overflow-style: none;
+}
+
+:host(app-dashboard)::-webkit-scrollbar{
+    width: 7px;
+}   
+
+:host(app-dashboard)::-webkit-scrollbar-track{
+    background: var(--backgroundSec);
+}
+
+:host(app-dashboard)::-webkit-scrollbar-thumb {
+    background: var(--scrollbarColor);
+    border-radius: 10px;
+  }
+
+
+.headlineContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: h;
+}
+
+.weatherContainer{
+    grid-area: w;
+    border-radius: 10px;
+}
+
+
+.devices-container,
+.tarife-container,
+.energie-erzeugung-container,
+.energie-verbrauch-container{
+    border: 2px solid #3E424C;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    background-color: var(--backgroundSec);
+    padding: 1.5em;
+}
+
+.devices-container{
+    grid-area: d;
+}
+
+.headline-menu-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tarife-container{
+    grid-area: t;
+}
+
+.energie-verbrauch-container{
+    grid-area: ev;
+}
+
+.energie-erzeugung-container{
+    grid-area: ee;
+}
+
+@media (min-width:992px) {
+    .mainContainer{ 
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: min-content min-content 1fr 1fr;
+        grid-template-areas: 
+        'h h h h'
+        'w w w w'
+        'd d t t'
+        'ev ev ee ee';
+    }
+
+    .headlineContainer{
+        justify-content: flex-start;
+    }
+}

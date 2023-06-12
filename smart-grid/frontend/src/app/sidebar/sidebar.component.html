@@ -1,0 +1,62 @@
+<div class="menuContainer" (click)="openSideBar()" *ngIf="sidebarState == 'closed'">
+    <span class="material-symbols-outlined xxlarge bold prim">
+        menu
+    </span>
+</div>
+
+<div class="sidebarMainContainer" [@sidebarAnimation]="sidebarState">
+    <!-- Logo -->
+    <div class="logoContainer d-fr">
+        <div class="logo-text-container d-fr">
+            <img src="assets/Grid.png" alt="" class="logoIcon filterWhite">
+            <p class="whiteNoChange large bold">SmartGrid</p>
+        </div>
+        <div class="closeContainer" (click)="closeSideBar()">
+            <span class="material-symbols-outlined large whiteNoChange">
+                arrow_forward_ios
+            </span>
+        </div>
+    </div>
+
+    <!-- Navs -->
+    <div class="navsContainer">
+        <div class="cont">
+            <span class="normal whiteNoChange bold">START</span>
+        </div>
+        <!-- Dashboard -->
+        <div class="navCont">
+            <span class="material-symbols-outlined xlarge whiteNoChange">
+                bar_chart_4_bars
+            </span>
+            <span class="large whiteNoChange bold">Dashboard</span>
+        </div>
+        <!-- //Dashboard -->
+
+        <div class="cont">
+            <span class="normal whiteNoChange bold">COMPONENTS</span>
+        </div>
+        <!-- Devices -->
+        <div class="navCont">
+            <span class="material-symbols-outlined xlarge whiteNoChange">
+                devices
+            </span>
+            <span class="large whiteNoChange bold">Devices</span>
+        </div>
+        <!-- //Devices -->
+
+        <!-- Tarife -->
+        <div class="navCont">
+            <span class="material-symbols-outlined xlarge whiteNoChange">
+                query_stats
+            </span>
+            <span class="large whiteNoChange bold">Tarife</span>
+        </div>
+        <!-- //Tarife -->
+
+        <div class="cont">
+            <span class="normal whiteNoChange bold">USER</span>
+        </div>
+
+    </div>
+
+</div>

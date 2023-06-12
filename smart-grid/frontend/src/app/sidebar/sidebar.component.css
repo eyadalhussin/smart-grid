@@ -1,0 +1,154 @@
+.sidebarMainContainer{
+    display: flex;
+    position: fixed;
+    left: 0;
+    flex-direction: column;
+    /* justify-content: flex-start;
+    align-items: center; */
+    background: var(--backgroundGradient);
+    width: 50%;
+    height: 100%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    z-index: 4;
+}
+
+.navsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 3em 0 2em 0;
+    flex-grow: 1;
+    gap: 2em;
+}
+
+.navCont{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5em;
+    padding: 1em 0 1em 2em;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.navCont:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.closeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.closeContainer:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.logoContainer{
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+    width: 100%;
+    background-color: var(--primDark);
+    padding: 0 1em 0 2em;
+}
+
+.logo-text-container{
+    display: flex;
+    gap: 0.5em;
+}
+
+.logoIcon{
+    cursor: pointer;
+    max-height: 35px;
+    max-width: 35px;
+}
+
+.logoIcon:hover{
+    animation: spin 5s linear infinite;
+}
+
+.menuContainer{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    cursor: pointer;
+}
+
+.cont{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+}
+
+@keyframes spin {
+    from{
+        transform: rotate(0deg);
+    }
+    from{
+        transform: rotate(360deg);
+    }
+}
+
+@media (min-width: 600px) {
+    .sidebarMainContainer{
+        width: 40%;
+    }
+}
+
+@media (min-width: 768px) {
+    .sidebarMainContainer{
+        width: 30%;
+    }
+}
+
+@media (min-width: 992px) {
+    .closeContainer{
+        display: none;
+    }
+
+    .menuContainer{
+        display: none;
+    }
+
+    .logoIcon{
+        max-height: 40px;
+        max-width: 40px;
+    }
+
+    .logoContainer{
+        justify-content: center;
+    }
+
+    .sidebarMainContainer{
+        position: static;
+        min-width: 250px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .closeContainer{
+        display: none;
+    }
+
+    .menuContainer{
+        display: none;
+    }
+
+    .logoContainer{
+        justify-content: center;
+    }
+
+    .sidebarMainContainer{
+        width: 17%;
+    }
+}

@@ -1,0 +1,16 @@
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background-color: var(--background);
+    height: 100vh;
+    /* max-height: 100vh; */
+    /* width: 100vw; */
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}

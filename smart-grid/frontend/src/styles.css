@@ -1,1 +1,163 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: poppins;
+}
+
+:root {
+    --backgroundPrim: #181924;
+    /* --backgroundSec: #212631; */
+    --backgroundSec: #2c3446;
+    --backgroundGrey: #EBEDEF;
+    --prim: #3B71CA;
+    --primDark: #181924;
+    --grey: #6e6e6e;
+    --white: #000000;
+    --black: #ffffff;
+    --scrollbarColor: #B1B1B1;
+    --shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+    --shadowM: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    --shadowL: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    --backgroundGradient: linear-gradient(180deg, #25293B 50%, #37445B 100%);
+}
+
+.prim {
+    color: var(--prim);
+}
+
+.black {
+    color: var(--black);
+}
+
+.lightGrey {
+    color: var(--backgroundGrey);
+}
+
+.grey {
+    color: var(--grey);
+}
+
+.white {
+    color: var(--white);
+}
+
+.whiteNoChange{
+    color: white;
+}
+
+.xbold {
+    font-weight: 900;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.semiBold {
+    font-weight: 600;
+}
+
+.xxxlarge {
+    font-size: 4em;
+}
+
+.xxlarge {
+    font-size: 2.7em;
+}
+
+.xlarge {
+    font-size: 2em;
+}
+
+.large {
+    font-size: 1.3em;
+}
+
+.normal {
+    font-size: 1em;
+}
+
+.filterWhite {
+    filter: invert(100%) sepia(0%) saturate(7485%) hue-rotate(353deg) brightness(115%) contrast(109%);
+}
+
+.breaker {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(204, 204, 204);
+    margin: 1em 0 1em 0;
+}
+
+.breakerH {
+    height: 25px;
+    background-color: var(--grey);
+    width: 2px;
+}
+
+/* Column Center */
+.d-fc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Row Center */
+.d-fr {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Row Center Space-Between */
+.d-frs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Row Center Space-Around */
+.d-fra {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.no-select{
+    user-select: none;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    transition: 0.3s ease;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    font-size: 13px;
+
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

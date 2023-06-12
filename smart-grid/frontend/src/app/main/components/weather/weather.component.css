@@ -1,0 +1,61 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    background: var(--backgroundGradient);
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.weather-city-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sunContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cityContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.infoContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.iconInfoCont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3em;
+}
+
+.infoIcon{
+    width: 50px;
+    height: 50px;
+}
+
+.timeContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width:992px) {
+    .mainContainer{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .weather-city-container{
+        gap: 3em;
+    }
+}
