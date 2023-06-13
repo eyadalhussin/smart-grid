@@ -19,8 +19,8 @@ public class Schedule {
     private long deviceID;
     @OneToOne
     private SmartHome smartHome;
-    private double powerConsumption;
-    private ScheduleState classState;
+    private double powerConsumptionKWH;
+    private ScheduleState scheduleState;
     private Duration duration;
     private Instant startTime;
     private Instant endTime;
@@ -39,8 +39,8 @@ public class Schedule {
                     boolean shouldStopDevice) {
         this.deviceID = deviceID;
         this.smartHome = smartHome;
-        this.powerConsumption = powerConsumption;
-        this.classState = classState;
+        this.powerConsumptionKWH = powerConsumption;
+        this.scheduleState = classState;
         this.duration = duration;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -76,20 +76,20 @@ public class Schedule {
         this.smartHome = smartHome;
     }
 
-    public double getPowerConsumption() {
-        return powerConsumption;
+    public double getPowerConsumptionKWH() {
+        return powerConsumptionKWH;
     }
 
-    public void setPowerConsumption(double powerConsumption) {
-        this.powerConsumption = powerConsumption;
+    public void setPowerConsumptionKWH(double powerConsumptionKWH) {
+        this.powerConsumptionKWH = powerConsumptionKWH;
     }
 
-    public ScheduleState getClassState() {
-        return classState;
+    public ScheduleState getScheduleState() {
+        return scheduleState;
     }
 
-    public void setClassState(ScheduleState classState) {
-        this.classState = classState;
+    public void setScheduleState(ScheduleState scheduleState) {
+        this.scheduleState = scheduleState;
     }
 
     public Duration getDuration() {

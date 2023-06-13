@@ -27,7 +27,7 @@ public class EnergyStorageService {
         return energyStorageRepository.findById(id);
     }
 
-    public EnergyStorage addEnergyStorage(EnergyStorage energyStorage) {
+    public EnergyStorage save(EnergyStorage energyStorage) {
         return energyStorageRepository.save(energyStorage);
     }
 

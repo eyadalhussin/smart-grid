@@ -29,7 +29,7 @@ public class ConventionalPowerPlantService {
         return repository.findById(id).orElse(null);
     }
 
-    public ConventionalPowerPlant addConventionalPowerPlant(ConventionalPowerPlant powerPlant) {
+    public ConventionalPowerPlant save(ConventionalPowerPlant powerPlant) {
         try {
             energyProducerService.addEnergyProducer(powerPlant);
             return repository.save(powerPlant);

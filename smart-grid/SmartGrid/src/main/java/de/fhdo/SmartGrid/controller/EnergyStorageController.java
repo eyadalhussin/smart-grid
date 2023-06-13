@@ -26,6 +26,6 @@ public class EnergyStorageController {
 
     @PutMapping
     public EnergyStorage createEnergyStorageTest(@RequestBody EnergyStorage energyStorage) {
-        return energyStorageService.addEnergyStorage(energyStorage);
+        return energyStorageService.save(energyStorage);
     }
 }

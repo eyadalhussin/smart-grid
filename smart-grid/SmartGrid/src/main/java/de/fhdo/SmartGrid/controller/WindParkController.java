@@ -26,6 +26,6 @@ public class WindParkController {
 
     @PutMapping
     public WindPark addWindTurbine(@RequestBody WindPark windTurbine) {
-        return windTurbineService.addWindPark(windTurbine);
+        return windTurbineService.save(windTurbine);
     }
 }

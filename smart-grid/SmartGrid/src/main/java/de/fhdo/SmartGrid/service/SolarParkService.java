@@ -29,7 +29,7 @@ public class SolarParkService {
         return repository.findById(id).orElse(null);
     }
 
-    public SolarPark addSolarPark(SolarPark solarPark) {
+    public SolarPark save(SolarPark solarPark) {
         try {
             energyProducerService.addEnergyProducer(solarPark);
             return repository.save(solarPark);

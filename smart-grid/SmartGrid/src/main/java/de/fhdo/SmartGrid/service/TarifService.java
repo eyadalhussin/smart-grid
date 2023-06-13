@@ -1,28 +1,43 @@
 package de.fhdo.SmartGrid.service;
 
+import de.fhdo.SmartGrid.Observer.WeatherObserver;
 import de.fhdo.SmartGrid.enums.EmergencyLevel;
+import de.fhdo.SmartGrid.model.Tarif;
 import de.fhdo.SmartGrid.repository.TarifRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.util.Optional;
 
+//TODO: This class is a mess, needs refactoring and still needs to be implemented correctly
 @Service
-public class TarifService {
+public class TarifService implements WeatherObserver {
     private final EnergyProducerService energyProducerService;
     private final EnergyConsumerService energyConsumerService;
     private final EnergyStorageService energyStorageService;
     private final TimeSimulationService timeSimulationComponent;
     private final EmergencyService emergencyService;
+    private final WeatherService weatherService;
+    private final TarifRepository tarifRepository;
+
     @Autowired
-    public TarifService(TarifRepository tarifRepository, EnergyProducerService energyProducerService, EnergyConsumerService energyConsumerService, EnergyStorageService energyStorageService, TimeSimulationService timeSimulationComponent, EmergencyService emergencyService) {
+    public TarifService(TarifRepository tarifRepository, EnergyProducerService energyProducerService, EnergyConsumerService energyConsumerService, EnergyStorageService energyStorageService, TimeSimulationService timeSimulationComponent, EmergencyService emergencyService, WeatherService weatherService) {
         this.energyProducerService = energyProducerService;
         this.energyConsumerService = energyConsumerService;
         this.energyStorageService = energyStorageService;
         this.timeSimulationComponent = timeSimulationComponent;
         this.emergencyService = emergencyService;
+        this.weatherService = weatherService;
+        this.tarifRepository = tarifRepository;
+    }
+
+    @PostConstruct
+    public void init() {
+        weatherService.registerObserver(this);
     }
 
     public double calculateTarif() {
@@ -51,6 +66,11 @@ public class TarifService {
         return 1d;
     }
 
+    public Tarif getCurrentTarif() {
+        Optional<Tarif> tarif = tarifRepository.findByActiveTrue();
+        return tarif.orElse(null);
+    }
+
     private PeakTime getCurrentPeakTime() {
         Instant currentTime = timeSimulationComponent.getCurrentTime();
 
@@ -71,6 +91,12 @@ public class TarifService {
         } else {
             return PeakTime.BASE;
         }
+    }
+
+    //Der Tarif muss nur neu berechnet werden, wenn sich das Wetter ändert, da in dieser Simulation sich das Wetter stündlich ändert ist so auch die Zeitbehandlung abgedeckt
+    @Override
+    public void WeatherUpdated() {
+        calculateTarif();
     }
 
     private enum PeakTime {

@@ -25,7 +25,7 @@ public class WindParkService {
         return windTurbineRepository.findAll();
     }
 
-    public WindPark addWindPark(WindPark windPark) {
+    public WindPark save(WindPark windPark) {
         try {
             energyProducerService.addEnergyProducer(windPark);
             return windTurbineRepository.save(windPark);

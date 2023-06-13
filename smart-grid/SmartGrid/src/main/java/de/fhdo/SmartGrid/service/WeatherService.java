@@ -1,6 +1,7 @@
 package de.fhdo.SmartGrid.service;
 
 import de.fhdo.SmartGrid.Observer.TimeObserver;
+import de.fhdo.SmartGrid.Observer.WeatherObserver;
 import de.fhdo.SmartGrid.model.WeatherModel;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class WeatherService implements TimeObserver {
 
     private final TimeSimulationService timeSimulationComponent;
+    private List<WeatherObserver> weatherObservers = new ArrayList<>();
 
     private WeatherModel currentWeather;
 
@@ -28,6 +32,14 @@ public class WeatherService implements TimeObserver {
     public void init() {
         timeSimulationComponent.registerObserver(this);
         setLocalWeather();
+    }
+
+    public void registerObserver(WeatherObserver weatherObserver) {
+        weatherObservers.add(weatherObserver);
+    }
+
+    public void removeObserver(WeatherObserver weatherObserver) {
+        weatherObservers.remove(weatherObserver);
     }
 
     public WeatherModel getCurrentWeather() {

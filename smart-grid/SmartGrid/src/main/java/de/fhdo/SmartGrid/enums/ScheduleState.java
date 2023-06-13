@@ -2,7 +2,7 @@ package de.fhdo.SmartGrid.enums;
 
 public enum ScheduleState {
     WAITING_FOR_START,
-    WATING_FOR_PRICE,
+    WAITING_FOR_PRICE,
     RUNNING,
     FINISHED,
     CANCELLED_BY_USER,
