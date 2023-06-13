@@ -1,5 +1,6 @@
 package de.fhdo.weathercontroller.controller;
 
+import de.fhdo.weathercontroller.WeatherControllerApplication;
 import de.fhdo.weathercontroller.model.WetterDaten;
 import de.fhdo.weathercontroller.service.WetterDatenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,13 @@ public class WetterDatenController {
     @RequestMapping("/now")
     public String now() {
         return wetterDatenService.findNow().toString();
+    }
+
+    @RequestMapping("/status")
+    public String status() {
+        if(!WeatherControllerApplication.running) {
+            return WeatherControllerApplication.exception.getMessage();
+        }
+        return "OK";
     }
 }

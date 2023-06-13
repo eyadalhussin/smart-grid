@@ -16,6 +16,8 @@ import java.util.Arrays;
 public class WeatherControllerApplication implements CommandLineRunner {
 
     public static Instant CurrentTime = Instant.now();
+    public static boolean running = false;
+    public static Exception exception = null;
 
     public static void main(String[] args) {
         SpringApplication.run(WeatherControllerApplication.class, args);
@@ -43,6 +45,8 @@ public class WeatherControllerApplication implements CommandLineRunner {
         var mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
 
+        running = true;
+
         client.subscribe(topic, (topic1, message) -> {
             try {
                 var time = mapper.readValue(message.getPayload(), DateTime.class);
@@ -53,7 +57,9 @@ public class WeatherControllerApplication implements CommandLineRunner {
                         .withNano(0);
                 CurrentTime = localDateTime.toInstant(ZoneOffset.UTC);
             } catch (Exception e) {
+                running = false;
                 e.printStackTrace();
+                exception = e;
             }
         });
     }
