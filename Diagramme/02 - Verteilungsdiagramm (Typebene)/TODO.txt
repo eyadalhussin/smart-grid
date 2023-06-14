@@ -1,0 +1,4 @@
+TODO:
+
+- Artifakte ergänzen (Angular, SpringBoot)
+- Ist das Diagramm auf Typebene?
