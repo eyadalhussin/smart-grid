@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 public class EnergyProducerService {
 
     private final WeatherService weatherService;
-    private final List<EnergyProducer> energyProducers = new ArrayList<>();
     private final EnergyProducerRepository energyProducerRepository;
     private final Map<Class<? extends EnergyProducer>, PowerGenerationStrategy> strategies;
 
@@ -33,13 +32,9 @@ public class EnergyProducerService {
                 .collect(Collectors.toMap(PowerGenerationStrategy::appliesTo, Function.identity()));
     }
 
-    @PostConstruct
-    public void init() {
-        energyProducers.addAll(energyProducerRepository.findAll());
-    }
-
     public double calculateCurrentEnergyGeneration() {
         double currentEnergyGeneration = 0; // in kWh
+        List<EnergyProducer> energyProducers = energyProducerRepository.findAll();
         for (EnergyProducer energyProducer : energyProducers) {
             PowerGenerationStrategy strategy = strategies.get(energyProducer.getClass());
             double powerGeneration = strategy.calculateCurrentPowerGeneration(energyProducer, weatherService);
@@ -47,14 +42,6 @@ public class EnergyProducerService {
             currentEnergyGeneration += powerGeneration;
         }
         return currentEnergyGeneration;
-    }
-
-    public void addEnergyProducer(EnergyProducer energyProducer) {
-        energyProducers.add(energyProducer);
-    }
-
-    public void removeEnergyProducer(EnergyProducer energyProducer) {
-        energyProducers.remove(energyProducer);
     }
 }
 

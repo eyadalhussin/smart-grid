@@ -1,6 +1,6 @@
 package de.fhdo.SmartGrid.service;
 
-import de.fhdo.SmartGrid.repository.ConventionalPowerPlanRepository;
+import de.fhdo.SmartGrid.repository.ConventionalPowerPlantRepository;
 import de.fhdo.SmartGrid.model.ConventionalPowerPlant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,13 +11,11 @@ import java.util.List;
 @Service
 public class ConventionalPowerPlantService {
 
-    private final ConventionalPowerPlanRepository repository;
-    private final EnergyProducerService energyProducerService;
+    private final ConventionalPowerPlantRepository repository;
 
     @Autowired
-    public ConventionalPowerPlantService(ConventionalPowerPlanRepository repository, EnergyProducerService energyProducerService) {
+    public ConventionalPowerPlantService(ConventionalPowerPlantRepository repository) {
         this.repository = repository;
-        this.energyProducerService = energyProducerService;
     }
 
 
@@ -31,10 +29,8 @@ public class ConventionalPowerPlantService {
 
     public ConventionalPowerPlant save(ConventionalPowerPlant powerPlant) {
         try {
-            energyProducerService.addEnergyProducer(powerPlant);
             return repository.save(powerPlant);
         } catch (DataAccessException e) {
-            energyProducerService.removeEnergyProducer(powerPlant);
             throw e;
         }
     }

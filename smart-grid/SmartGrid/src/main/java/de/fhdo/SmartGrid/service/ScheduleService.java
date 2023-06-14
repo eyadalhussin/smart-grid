@@ -15,10 +15,10 @@ import java.util.List;
 public class ScheduleService implements TimeObserver {
 
     private final TimeSimulationService timeSimulationService;
-    private final ScheduleRepository scheduleRepository;
     private final SmartHomeService smartHomeService;
     private final EmergencyService emergencyService;
     private final TarifService tarifService;
+    private final ScheduleRepository scheduleRepository;
 
     @Autowired
     public ScheduleService(TimeSimulationService timeSimulationService, ScheduleRepository scheduleRepository, SmartHomeService smartHomeService, EmergencyService emergencyService, TarifService tarifService) {

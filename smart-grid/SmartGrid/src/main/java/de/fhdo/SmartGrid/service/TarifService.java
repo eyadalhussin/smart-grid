@@ -17,19 +17,19 @@ import java.util.Optional;
 @Service
 public class TarifService implements WeatherObserver {
     private final EnergyProducerService energyProducerService;
-    private final EnergyConsumerService energyConsumerService;
+    private final SmartHomeService energyConsumerService;
     private final EnergyStorageService energyStorageService;
-    private final TimeSimulationService timeSimulationComponent;
+    private final TimeSimulationService timeSimulationService;
     private final EmergencyService emergencyService;
     private final WeatherService weatherService;
     private final TarifRepository tarifRepository;
 
     @Autowired
-    public TarifService(TarifRepository tarifRepository, EnergyProducerService energyProducerService, EnergyConsumerService energyConsumerService, EnergyStorageService energyStorageService, TimeSimulationService timeSimulationComponent, EmergencyService emergencyService, WeatherService weatherService) {
+    public TarifService(TarifRepository tarifRepository, EnergyProducerService energyProducerService, SmartHomeService energyConsumerService, EnergyStorageService energyStorageService, TimeSimulationService timeSimulationComponent, EmergencyService emergencyService, WeatherService weatherService) {
         this.energyProducerService = energyProducerService;
         this.energyConsumerService = energyConsumerService;
         this.energyStorageService = energyStorageService;
-        this.timeSimulationComponent = timeSimulationComponent;
+        this.timeSimulationService = timeSimulationComponent;
         this.emergencyService = emergencyService;
         this.weatherService = weatherService;
         this.tarifRepository = tarifRepository;
@@ -72,7 +72,7 @@ public class TarifService implements WeatherObserver {
     }
 
     private PeakTime getCurrentPeakTime() {
-        Instant currentTime = timeSimulationComponent.getCurrentTime();
+        Instant currentTime = timeSimulationService.getCurrentTime();
 
         // Konvertiere das aktuelle 'Instant' in 'LocalTime'
         LocalTime currentLocalTime = currentTime.atZone(ZoneId.systemDefault()).toLocalTime();
