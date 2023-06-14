@@ -12,12 +12,10 @@ import java.util.List;
 public class SolarParkService {
 
     private final SolarParkRepository repository;
-    private final EnergyProducerService energyProducerService;
 
     @Autowired
-    public SolarParkService(SolarParkRepository repository, EnergyProducerService energyProducerService) {
+    public SolarParkService(SolarParkRepository repository) {
         this.repository = repository;
-        this.energyProducerService = energyProducerService;
     }
 
 
@@ -29,12 +27,10 @@ public class SolarParkService {
         return repository.findById(id).orElse(null);
     }
 
-    public SolarPark addSolarPark(SolarPark solarPark) {
+    public SolarPark save(SolarPark solarPark) {
         try {
-            energyProducerService.addEnergyProducer(solarPark);
             return repository.save(solarPark);
         } catch (DataAccessException e) {
-            energyProducerService.removeEnergyProducer(solarPark);
             throw e;
         }
 

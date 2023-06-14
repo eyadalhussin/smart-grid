@@ -18,6 +18,6 @@ public class ConventionalPowerPlantController {
 
     @PutMapping
     public ConventionalPowerPlant addConventionalPowerPlant(@RequestBody ConventionalPowerPlant conventionalPowerPlant) {
-        return conventionalPowerPlantService.addConventionalPowerPlant(conventionalPowerPlant);
+        return conventionalPowerPlantService.save(conventionalPowerPlant);
     }
 }

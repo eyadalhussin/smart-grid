@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Scope("singleton")
-public class EnergyConsumerService {
+public class SmartHomeService {
 
     private double currentEnergyConsumption;
 
@@ -19,5 +19,13 @@ public class EnergyConsumerService {
 
     public double calculateCurrentEnergyConsumption() {
         return 0;
+    }
+
+    public boolean startDevice(long deviceID) {
+        return false;
+    }
+
+    public boolean stopDevice(long deviceID) {
+        return false;
     }
 }

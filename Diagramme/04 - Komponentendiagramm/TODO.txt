@@ -1,0 +1,4 @@
+TODO:
+
+- Komponentendiagramm anpassen (Technologie aussuchen)
+- Rest API im Verteilungsdiagramm einfügen

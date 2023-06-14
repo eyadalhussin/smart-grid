@@ -12,25 +12,20 @@ import java.util.List;
 public class WindParkService {
 
     private final WindParkRepository windTurbineRepository;
-    private final EnergyProducerService energyProducerService;
-
 
     @Autowired
-    public WindParkService (WindParkRepository windTurbineRepository, EnergyProducerService energyProducerService) {
+    public WindParkService (WindParkRepository windTurbineRepository) {
         this.windTurbineRepository = windTurbineRepository;
-        this.energyProducerService = energyProducerService;
     }
 
     public List<WindPark> getWindTurbines() {
         return windTurbineRepository.findAll();
     }
 
-    public WindPark addWindPark(WindPark windPark) {
+    public WindPark save(WindPark windPark) {
         try {
-            energyProducerService.addEnergyProducer(windPark);
             return windTurbineRepository.save(windPark);
         } catch (DataAccessException e) {
-            energyProducerService.removeEnergyProducer(windPark);
             throw e;
         }
     }

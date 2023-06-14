@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 @Scope("singleton")
 public class EnergyService implements TimeObserver {
     private final EnergyProducerService energyProducerService;
-    private final EnergyConsumerService energyConsumerService;
+    private final SmartHomeService smartHomeService;
     private final EnergyStorageService energyStorageService;
     private final TimeSimulationService timeSimulationComponent;
 
     @Autowired
-    public EnergyService(TimeSimulationService timeSimulationComponent, EnergyProducerService energyProducerService, EnergyConsumerService energyConsumerService, EnergyStorageService energyStorageService) {
+    public EnergyService(TimeSimulationService timeSimulationComponent, EnergyProducerService energyProducerService, SmartHomeService energyConsumerService, EnergyStorageService energyStorageService) {
         this.energyProducerService = energyProducerService;
-        this.energyConsumerService = energyConsumerService;
+        this.smartHomeService = energyConsumerService;
         this.energyStorageService = energyStorageService;
         this.timeSimulationComponent = timeSimulationComponent;
     }
@@ -25,7 +25,7 @@ public class EnergyService implements TimeObserver {
     @Override
     public void timeUpdated() {
         double currentEnergyGeneration = energyProducerService.calculateCurrentEnergyGeneration();
-        double currentEnergyConsumption = energyConsumerService.calculateCurrentEnergyConsumption();
+        double currentEnergyConsumption = smartHomeService.calculateCurrentEnergyConsumption();
 
         energyStorageService.distributeEnergy(currentEnergyGeneration - currentEnergyConsumption);
     }

@@ -23,6 +23,6 @@ public class SolarParkController {
 
     @PutMapping
     public SolarPark addSolarPark(@RequestBody SolarPark solarPark) {
-        return solarParkService.addSolarPark(solarPark);
+        return solarParkService.save(solarPark);
     }
 }
