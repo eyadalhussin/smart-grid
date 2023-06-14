@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -20,7 +20,8 @@ import { DevicesComponent } from './main/dashboard/charts/devices/devices.compon
     DevicesComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
