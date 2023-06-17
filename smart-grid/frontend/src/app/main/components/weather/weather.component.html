@@ -3,8 +3,8 @@
     <div class="weather-city-container">
         <!-- Sun and Temp -->
         <div class="sunContainer">
-            <img src="assets/sun2.png" alt="" class="sunImg">
-            <span class="xxlarge bold whiteNoChange">32°</span>
+            <img src="assets/weatherIcons/{{weatherIcon}}.png" alt="" class="sunImg">
+            <span class="xxlarge bold whiteNoChange">{{temp}}°</span>
         </div>
         <!-- City and Date -->
         <div class="cityContainer">
@@ -17,21 +17,23 @@
         <!-- Air -->
         <div class="iconInfoCont">
             <span class="material-symbols-outlined whiteNoChange xxlarge">cloud</span>
-            <span class="whiteNoChange large semiBold">5%</span>
+            <span class="whiteNoChange large semiBold">{{cloud}}%</span>
         </div>
         <!--  -->
         <div class="iconInfoCont">
             <span class="material-symbols-outlined whiteNoChange xxlarge">air</span>
-            <span class="whiteNoChange large semiBold">16 km/h</span>
+            <span class="whiteNoChange large semiBold">{{windSpeed}} km/h</span>
         </div>
         <!--  -->
         <div class="iconInfoCont">
             <span class="material-symbols-outlined whiteNoChange xxlarge">humidity_mid</span>
-            <span class="whiteNoChange large semiBold">10%</span>
+            <span class="whiteNoChange large semiBold">{{humidity}}%</span>
         </div>
     </div>
     <!-- Time -->
     <div class="timeContainer">
-        <span class="whiteNoChange xlarge bold">{{hours}}:{{minutes}}:{{seconds}}</span>
+        <span class="whiteNoChange xlarge bold">{{hours}}:{{minutes}}</span>
+        <!-- <span class="whiteNoChange xlarge bold" *ngIf="seconds < 10">0</span>
+        <span class="whiteNoChange xlarge bold">{{seconds}}</span> -->
     </div>
 </div>

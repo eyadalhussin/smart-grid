@@ -8,6 +8,17 @@ import { WeatherComponent } from './main/components/weather/weather.component';
 import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { TopBarComponent } from './main/top-bar/top-bar.component';
 import { DevicesComponent } from './main/dashboard/charts/devices/devices.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MqttModule, IMqttServiceOptions } from "ngx-mqtt";
+import { TimeManipulationComponent } from './main/components/time-manipulation/time-manipulation.component';
+
+export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
+  hostname: '159.89.104.105',
+  port: 8083,
+  path: '/mqtt',
+  username: 'fhdo',
+  password: 'fhdo'
+}
 
 @NgModule({
   declarations: [
@@ -17,11 +28,14 @@ import { DevicesComponent } from './main/dashboard/charts/devices/devices.compon
     WeatherComponent,
     DashboardComponent,
     TopBarComponent,
-    DevicesComponent
+    DevicesComponent,
+    TimeManipulationComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    MqttModule.forRoot(MQTT_SERVICE_OPTIONS)
   ],
   providers: [],
   bootstrap: [AppComponent]
