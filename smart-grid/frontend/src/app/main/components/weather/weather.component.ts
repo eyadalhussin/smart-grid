@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IMqttMessage, MqttService } from 'ngx-mqtt';
 import { Subscription } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./weather.component.css'],
 })
 
-export class WeatherComponent implements OnInit {
+export class WeatherComponent implements OnInit, OnDestroy {
   year: number;
   month: number;
   day: number;
@@ -16,11 +16,10 @@ export class WeatherComponent implements OnInit {
   minutes: number;
   seconds: number;
 
-  weatherName: string;
-  temp: number;
-  humidity: number;
-  windSpeed: number;
-  cloud: number;
+  temp: number = 19;
+  humidity: number = 19;
+  windSpeed: number = 19;
+  cloud: number = 19;
 
   weatherIcon: string = "DayClear";
 
@@ -37,9 +36,15 @@ export class WeatherComponent implements OnInit {
     this.initTime();
     this.timeSubscribe();
     this.weatherSubcribe();
+    //If Seconds should also be shown, the Interval should be destroyed with ngOnDestroy
     setInterval(() => {
       this.seconds++;
     }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    this.timeSubscription.unsubscribe();
+    this.weatherSubscription.unsubscribe();
   }
 
   timeSubscribe(): void {

@@ -59,8 +59,23 @@
 
 @media (min-width:992px) {
     .mainContainer{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .weather-city-container{
+        gap: 3em;
+    }
+}
+
+@media (min-width:1200px) {
+    .mainContainer{
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
+        gap: 1em;
     }
 
     .weather-city-container{
