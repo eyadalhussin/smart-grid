@@ -161,3 +161,21 @@ html, body {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+.button-nrm{
+    all: unset;
+    width: 100px;
+    height: 40px;
+    background-color: var(--backgroundGradient);
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: 150ms ease;
+}
+
+.button-nrm:hover{
+    background-color: var(--backgroundGrey);
+}

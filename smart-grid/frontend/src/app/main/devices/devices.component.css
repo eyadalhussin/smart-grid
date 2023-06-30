@@ -1,0 +1,45 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 1000px;
+    padding: 2em 5em 5em 5em;
+    background-color: var(--backgroundPrim);
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 25px;
+}
+
+thead{
+    background-color: var(--prim);
+}
+
+th{
+    color: var(--black); 
+}
+
+td{
+    color: var(--black);
+    text-align: center;
+}
+
+tbody tr{
+    padding: 1em;
+    background-color: var(--backgroundSec);
+    border-bottom: 1px solid white;
+}
+
+tbody tr{
+    transition: 0.1s ease;
+    cursor: pointer;
+}
+
+tbody tr:hover{
+    background-color: var(--grey);
+}
+
+td, th{
+    padding: 0.4em;
+}

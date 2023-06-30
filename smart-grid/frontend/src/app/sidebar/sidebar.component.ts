@@ -1,5 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -22,6 +23,8 @@ export class SidebarComponent implements OnInit {
     
     if(window.innerWidth >= 992) this.sidebarState = "open";
   }
+
+  constructor(private router:Router){}
   
   ngOnInit() {
 
@@ -34,6 +37,11 @@ export class SidebarComponent implements OnInit {
 
   closeSideBar(){
     this.sidebarState = "closed";
+  }
+
+
+  onNavigate(route:string){
+    this.router.navigate([route]);
   }
 
 }

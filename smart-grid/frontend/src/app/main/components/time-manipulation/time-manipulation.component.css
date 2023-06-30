@@ -4,3 +4,9 @@
     align-items: center;
     gap: 1em;
 }
+
+.numberInput{
+    width: 70px;
+    height: 35px;
+    font-size: 1.2em;
+}
