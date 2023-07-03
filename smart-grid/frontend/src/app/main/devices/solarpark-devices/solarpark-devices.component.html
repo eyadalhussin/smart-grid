@@ -1,0 +1,51 @@
+<!-- Powerplants -->
+<div class="devices-container">
+    <!-- Device Type and Button -->
+    <div class="type-button-container">
+        <h3 class="black">Solar Parks</h3>
+        <button class="addButton" (click)="toggleAdd('solarPark')" *ngIf="!addingSolarPark">Add+</button>
+        <button class="cancelButton" (click)="toggleAdd('solarPark')" *ngIf="addingSolarPark">Cancel</button>
+    </div>
+
+    <div class="addContainer" *ngIf="addingSolarPark">
+        <!-- Form for adding a new Powerplant -->
+        <form [formGroup]="solarParkForm" (ngSubmit)="onSolarParkSubmit()">
+            <!-- Name -->
+            <label for="name" class="black">Name</label>
+            <input type="text" name="name" formControlName="name">
+
+            <!-- Number of Cells -->
+            <label for="cells" class="black">Number of Cells</label>
+            <input type="number" name="cells" min="1" max="5" formControlName="cells">
+
+            <!-- Cell Efficiency -->
+            <label for="cellE" class="black">Cell Efficiency</label>
+            <input type="number" name="cellE" formControlName="cellE">
+
+            <button class="confirmButton" type="submit">Confirm</button>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Number of Cells</th>
+                <th>Cell Efficiency</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Listing Solar Parks -->
+            <tr *ngFor="let element of solarParks">
+                <td>{{element.id}}</td>
+                <td>{{element.name}}</td>
+                <td>{{element.numberOfCells}}</td>
+                <td>{{element.cellEfficiency}}</td>
+                <td><button class="cancelButton">remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- //Solar Parks -->
+    <p class="black center" *ngIf="solarParks.length == 0">There is no Solarparks registered!</p>
+</div>

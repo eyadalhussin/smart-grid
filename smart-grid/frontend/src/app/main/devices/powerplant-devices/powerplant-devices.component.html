@@ -1,0 +1,54 @@
+<!-- Powerplants -->
+<div class="devices-container">
+    <!-- Device Type and Button -->
+    <div class="type-button-container">
+        <h3 class="black">Powerplants</h3>
+        <button class="addButton" (click)="toggleAdd('powerplant')" *ngIf="!addingPowerplant">Add+</button>
+        <button class="cancelButton" (click)="toggleAdd('powerplant')" *ngIf="addingPowerplant">Cancel</button>
+    </div>
+
+    <div class="addContainer" *ngIf="addingPowerplant">
+        <!-- Form for adding a new Powerplant -->
+        <form [formGroup]="powerplantForm" (ngSubmit)="onPowerplantSubmit()">
+            <label for="name" class="black">Name</label>
+            <input type="text" name="name" formControlName="name">
+            <label for="generators" class="black">Generators</label>
+            <input type="number" name="generators" min="1" max="5" formControlName="generators">
+            <label for="generators" class="black">Current PowerGeneration</label>
+            <input type="number" name="PowerGeneration" formControlName="powerGeneration">
+            <label for="fueltype" class="black">Fuel Type</label>
+            <select name="fueltype" formControlName="fuelType">
+                <option value="oil">Oil</option>
+                <option value="gas">Gas</option>
+            </select>
+            <button class="confirmButton" type="submit">Confirm</button>
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Number of Generators</th>
+                <th>Current power generation</th>
+                <th>Fuel Type</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Listing Powerplants -->
+            <tr *ngFor="let powerplant of powerplants">
+                <td>{{powerplant.id}}</td>
+                <td>{{powerplant.name}}</td>
+                <td>{{powerplant.numberOfGenerators}}</td>
+                <td>{{powerplant.currentPowerGeneration}}</td>
+                <td>{{powerplant.fuelType}}</td>
+                <td><button class="cancelButton">remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- //Powerplants -->
+
+    <p class="black center" *ngIf="powerplants.length == 0">There is no Powerplants registered!</p>
+
+</div>

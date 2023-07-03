@@ -1,0 +1,10 @@
+{
+    "/api/*": {
+        "target": "https://icecreamparty.de",
+        "secure": true,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/api": ""
+          }
+    }
+}

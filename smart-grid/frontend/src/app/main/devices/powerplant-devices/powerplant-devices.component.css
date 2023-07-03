@@ -1,0 +1,97 @@
+
+.devices-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--backgroundSec);
+    box-shadow: var(--shadowL);
+    padding: 1.5em;
+    border-radius: 10px;
+    gap: 0.5em;
+}
+
+.type-button-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.addButton, .cancelButton, .confirmButton{
+    all: unset;
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    padding: 0.3em 0.5em;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.addButton:hover, .cancelButton:hover, .confirmButton:hover{
+    transform: scale(1.05);
+}
+
+.addButton{
+    background-color: var(--prim);
+}
+
+.cancelButton{
+    background-color: var(--red);
+}
+
+.confirmButton{
+    background-color: var(--green);
+}
+
+.addContainer{
+    display: flex;
+    width: 100%;
+    gap: 2em;
+}
+
+table{
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 1em 1em;
+}
+
+thead{
+    background-color: var(--backgroundPrim);
+}
+
+thead tr th{
+    color: var(--black);
+    padding: 0.5em;
+}
+
+thead tr th:first-child{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+thead tr th:last-child{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+td{
+    padding: 0.5em;
+}
+
+tbody tr{
+    border-bottom: 1px solid rgba(70, 70, 70, 0.8);
+}
+
+tbody tr:last-child{
+    border-bottom: 0px;
+}
+
+tbody tr td{
+    color: var(--black);
+}
+
+.center{
+    text-align: center;
+}

@@ -9,13 +9,16 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { WeatherComponent } from './main/components/weather/weather.component';
 import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { TopBarComponent } from './main/top-bar/top-bar.component';
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { MqttModule, IMqttServiceOptions } from "ngx-mqtt";
 import { TimeManipulationComponent } from './main/components/time-manipulation/time-manipulation.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SpinnerComponent } from './main/components/spinner/spinner.component';
 import { DevicesComponent } from './main/devices/devices.component';
 import { DevicesChartComponent } from './main/dashboard/charts/devices-chart/devices-chart.component';
+import { PowerplantDevicesComponent } from './main/devices/powerplant-devices/powerplant-devices.component';
+import { SolarparkDevicesComponent } from './main/devices/solarpark-devices/solarpark-devices.component';
+import { WindparkDevicesComponent } from './main/devices/windpark-devices/windpark-devices.component';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: '159.89.104.105',
@@ -23,20 +26,6 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   path: '/mqtt',
   username: 'fhdo',
   password: 'fhdo'
-}
-
-// CORS configuration
-export function configureCORSHeaders(http: HttpClient) {
-  return () => {
-    const headers = new HttpHeaders();
-    headers.set('Access-Control-Allow-Origin', '*');
-    headers.set('Access-Control-Allow-Methods', '*');
-    headers.set('Access-Control-Allow-Headers', '*');
-    headers.set('Access-Control-Allow-Credentials', 'true');
-    // Use the headers with your requests
-    // Example:
-    // http.get('your-url', { headers }).subscribe(...);
-  };
 }
 
 @NgModule({
@@ -51,6 +40,9 @@ export function configureCORSHeaders(http: HttpClient) {
     SpinnerComponent,
     DevicesComponent,
     DevicesChartComponent,
+    PowerplantDevicesComponent,
+    SolarparkDevicesComponent,
+    WindparkDevicesComponent,
   ],
   imports: [
     CommonModule,
@@ -61,11 +53,7 @@ export function configureCORSHeaders(http: HttpClient) {
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [{
-    provide: APP_INITIALIZER,
-    useFactory: configureCORSHeaders,
-    multi: true
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
