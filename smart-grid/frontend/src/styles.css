@@ -18,6 +18,8 @@ html, body {
     --grey: #6e6e6e;
     --white: #000000;
     --black: #ffffff;
+    --red: #d9534f;
+    --green: #5cb85c;
     --scrollbarColor: #B1B1B1;
     --shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     --shadowM: 5px 5px 5px rgba(0, 0, 0, 0.2);

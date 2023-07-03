@@ -3,11 +3,12 @@ import { Chart, ChartConfiguration } from 'chart.js/auto';
 import { colorService } from 'src/app/main/services/colorService';
 
 @Component({
-  selector: 'app-devices',
-  templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.css']
+  selector: 'app-devices-chart',
+  templateUrl: './devices-chart.component.html',
+  styleUrls: ['./devices-chart.component.css']
 })
-export class DevicesComponent {
+
+export class DevicesChartComponent {
   @ViewChild('chartCanvas') chartCanvas: ElementRef | undefined;
   chart: Chart<'doughnut'> | undefined;
 
