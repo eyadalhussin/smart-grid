@@ -9,22 +9,30 @@
 
     <div class="addContainer" *ngIf="addingSolarPark">
         <!-- Form for adding a new Powerplant -->
-        <form [formGroup]="solarParkForm" (ngSubmit)="onSolarParkSubmit()">
+        <form [formGroup]="solarParkForm" (ngSubmit)="onSolarParkSubmit()" class="formContainer">
             <!-- Name -->
-            <label for="name" class="black">Name</label>
-            <input type="text" name="name" formControlName="name">
+            <div class="inputContainer">
+                <label for="name" class="black">Name</label>
+                <input type="text" name="name" formControlName="name" class="inputFeld">
+            </div>
 
             <!-- Number of Cells -->
-            <label for="cells" class="black">Number of Cells</label>
-            <input type="number" name="cells" min="1" max="5" formControlName="cells">
+            <div class="inputContainer">
+                <label for="cells" class="black">Number of Cells</label>
+                <input type="number" name="cells" min="1" max="10" formControlName="numberOfCells" class="inputFeld">
+            </div>
 
             <!-- Cell Efficiency -->
-            <label for="cellE" class="black">Cell Efficiency</label>
-            <input type="number" name="cellE" formControlName="cellE">
+            <div class="inputContainer">
+                <label for="cellE" class="black">Cell Efficiency</label>
+                <input type="number" name="cellE" formControlName="cellEfficiency" class="inputFeld">
+            </div>
 
             <button class="confirmButton" type="submit">Confirm</button>
+
         </form>
     </div>
+
     <table>
         <thead>
             <tr>
@@ -42,7 +50,7 @@
                 <td>{{element.name}}</td>
                 <td>{{element.numberOfCells}}</td>
                 <td>{{element.cellEfficiency}}</td>
-                <td><button class="cancelButton">remove</button></td>
+                <td><button class="cancelButton" (click)="onSolarParkDelete(element.id)">remove</button></td>
             </tr>
         </tbody>
     </table>

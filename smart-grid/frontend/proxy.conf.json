@@ -1,0 +1,8 @@
+{
+  "/api/*": {
+    "target": "https://icecreamparty.de",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

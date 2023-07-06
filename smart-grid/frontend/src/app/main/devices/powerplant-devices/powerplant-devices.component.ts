@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Powerplant } from 'src/app/classes/powerplant';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-powerplant-devices',
@@ -48,9 +49,9 @@ export class PowerplantDevicesComponent implements OnInit {
 
     if (this.powerplantForm.valid) {
       const formData = this.powerplantForm.value;
-      this.http.put('https://icecreamparty.de/api/smartgrid/conventional-power-plant', formData).subscribe(erg => {
+      this.http.put('/api/smartgrid/conventional-power-plant', formData).subscribe(erg => {
         console.log(erg);
-      })
+      });
       console.log(formData); // You can access the form values here
       this.powerplantForm.reset();
     }

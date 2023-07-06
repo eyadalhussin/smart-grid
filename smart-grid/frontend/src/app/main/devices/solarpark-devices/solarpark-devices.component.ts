@@ -15,11 +15,11 @@ export class SolarparkDevicesComponent {
   solarParks: SolarPark[] = [];
   addingSolarPark: boolean = false;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder){
+  constructor(private http: HttpClient, private formBuilder: FormBuilder) {
     this.solarParkForm = this.formBuilder.group({
       name: ['', Validators.required],
-      cells: ['', Validators.required],
-      cellE: ['', Validators.required],
+      numberOfCells: ['', Validators.required],
+      cellEfficiency: ['', Validators.required],
     })
   }
 
@@ -27,11 +27,10 @@ export class SolarparkDevicesComponent {
     this.getSolarParks();
   }
 
-  getSolarParks(){
+  getSolarParks() {
     this.http.get<SolarPark[]>('https://icecreamparty.de/api/smartgrid/solar-park').subscribe(erg => {
-      console.log("printing solarParks");
-      this.solarParks = erg;
-      console.log("Getting" + this.solarParks);
+    this.solarParks = erg;
+      // console.log("Getting" + this.solarParks);
     });
   }
 
@@ -44,14 +43,21 @@ export class SolarparkDevicesComponent {
 
   onSolarParkSubmit() {
     console.log("Submitting the form");
-
     if (this.solarParkForm.valid) {
       const formData = this.solarParkForm.value;
-      this.http.put('https://icecreamparty.de/api/smartgrid/solar-park', formData).subscribe(erg => {
-        console.log(erg);
-      })
       console.log(formData);
+      
+      this.http.put('https://icecreamparty.de/api/smartgrid/solar-park', formData).subscribe(erg => {
+        this.getSolarParks();
+      });
       this.solarParkForm.reset();
     }
   }
+
+  onSolarParkDelete(id:number){
+    this.http.delete('https://icecreamparty.de/api/smartgrid/solar-park/'+id).subscribe(erg => {
+      this.getSolarParks();
+    });
+  }
+
 }

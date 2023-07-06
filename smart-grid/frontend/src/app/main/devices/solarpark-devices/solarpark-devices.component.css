@@ -48,7 +48,6 @@
 .addContainer{
     display: flex;
     width: 100%;
-    gap: 2em;
 }
 
 table{

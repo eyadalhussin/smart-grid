@@ -5,29 +5,39 @@
         <h3 class="black">Windparks</h3>
         <button class="addButton" (click)="toggleAdd('windPark')" *ngIf="!addingWindPark">Add+</button>
         <button class="cancelButton" (click)="toggleAdd('windPark')" *ngIf="addingWindPark">Cancel</button>
+
     </div>
 
     <div class="addContainer" *ngIf="addingWindPark">
         <!-- Form for adding a new Powerplant -->
-        <form [formGroup]="windParkForm" (ngSubmit)="onWindParkSubmit()">
+        <form [formGroup]="windParkForm" (ngSubmit)="onWindParkSubmit()" class="formContainer">
             <!-- Name -->
-            <label for="name" class="black">Name</label>
-            <input type="text" name="name" formControlName="name">
+            <div class="inputContainer">
+                <label for="name" class="black">Name</label>
+                <input type="text" name="name" formControlName="name" class="inputFeld">
+            </div>
 
             <!-- Number of Turbines -->
-            <label for="cells" class="black">Number of Turbines</label>
-            <input type="number" name="numberOfTurbines" min="1" max="5" formControlName="numberOfTurbines">
+            <div class="inputContainer">
+                <label for="cells" class="black">Number of Turbines</label>
+                <input type="number" name="numberOfTurbines" min="1" max="5" formControlName="numberOfTurbines" class="inputFeld">
+            </div>
 
             <!-- Cell Efficiency -->
-            <label for="cellE" class="black">Turbine Efficiency</label>
-            <input type="number" name="turbineEfficiency" formControlName="turbineEfficiency">
+            <div class="inputContainer">
+                <label for="cellE" class="black">Turbine Efficiency</label>
+                <input type="number" name="turbineEfficiency" formControlName="turbineEfficiency" class="inputFeld">
+            </div>
 
             <!-- Cell Efficiency -->
-            <label for="cellE" class="black">Turbine Diameter</label>
-            <input type="number" name="turbineDiameter" formControlName="turbineDiameter">
+            <div class="inputContainer">
+                <label for="cellE" class="black">Turbine Diameter</label>
+                <input type="number" name="turbineDiameter" formControlName="turbineDiameter" class="inputFeld">
+            </div>
 
 
             <button class="confirmButton" type="submit">Confirm</button>
+
         </form>
     </div>
     <table>
@@ -49,7 +59,7 @@
                 <td>{{element.numberOfTurbines}}</td>
                 <td>{{element.turbineEfficiency}}</td>
                 <td>{{element.turbineDiameter}}</td>
-                <td><button class="cancelButton">remove</button></td>
+                <td><button class="cancelButton" (click)="onDeleteWindPark(element.id)">remove</button></td>
             </tr>
         </tbody>
     </table>

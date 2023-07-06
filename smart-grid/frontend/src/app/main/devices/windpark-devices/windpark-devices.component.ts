@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WindPark } from 'src/app/classes/windPark';
+import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-windpark-devices',
@@ -46,7 +47,6 @@ export class WindparkDevicesComponent implements OnInit {
 
   onWindParkSubmit() {
     console.log("Submitting the form");
-
     if (this.windParkForm.valid) {
       const formData = this.windParkForm.value;
       this.http.put('https://icecreamparty.de/api/smartgrid/wind-park', formData).subscribe(erg => {
@@ -56,4 +56,12 @@ export class WindparkDevicesComponent implements OnInit {
       this.windParkForm.reset();
     }
   }
+
+  onDeleteWindPark(id:number){
+
+    this.http.delete('https://icecreamparty.de/api/smartgrid/wind-park/'+id).subscribe(erg => {
+      console.log(erg);
+    })
+  }
+
 }

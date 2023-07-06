@@ -5,23 +5,42 @@
         <h3 class="black">Powerplants</h3>
         <button class="addButton" (click)="toggleAdd('powerplant')" *ngIf="!addingPowerplant">Add+</button>
         <button class="cancelButton" (click)="toggleAdd('powerplant')" *ngIf="addingPowerplant">Cancel</button>
+
     </div>
 
     <div class="addContainer" *ngIf="addingPowerplant">
         <!-- Form for adding a new Powerplant -->
-        <form [formGroup]="powerplantForm" (ngSubmit)="onPowerplantSubmit()">
-            <label for="name" class="black">Name</label>
-            <input type="text" name="name" formControlName="name">
-            <label for="generators" class="black">Generators</label>
-            <input type="number" name="generators" min="1" max="5" formControlName="generators">
-            <label for="generators" class="black">Current PowerGeneration</label>
-            <input type="number" name="PowerGeneration" formControlName="powerGeneration">
-            <label for="fueltype" class="black">Fuel Type</label>
-            <select name="fueltype" formControlName="fuelType">
-                <option value="oil">Oil</option>
-                <option value="gas">Gas</option>
-            </select>
+        <form [formGroup]="powerplantForm" (ngSubmit)="onPowerplantSubmit()" class="formContainer">
+            <!-- Name -->
+            <div class="inputContainer">
+                <label for="name" class="black">Name</label>
+                <input type="text" name="name" formControlName="name" class="inputFeld">
+            </div>
+
+            <!-- Number of Generators -->
+            <div class="inputContainer">
+                <label for="generators" class="black">Generators</label>
+                <input type="number" name="generators" min="1" max="5" formControlName="generators" class="inputFeld">
+            </div>
+
+            <!-- Power Generation -->
+            <div class="inputContainer">
+                <label for="generators" class="black">Current PowerGeneration</label>
+                <input type="number" name="PowerGeneration" formControlName="powerGeneration" class="inputFeld">
+            </div>
+
+            <!-- Fuel Type -->
+            <div class="inputContainer">
+                <label for="fueltype" class="black">Fuel Type</label>
+                <select name="fueltype" formControlName="fuelType">
+                    <option value="oil">Oil</option>
+                    <option value="gas">Gas</option>
+                    <option value="coal">Coal</option>
+                </select>
+            </div>
+
             <button class="confirmButton" type="submit">Confirm</button>
+
         </form>
     </div>
     <table>

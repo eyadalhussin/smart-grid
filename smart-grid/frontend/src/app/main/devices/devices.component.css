@@ -6,3 +6,9 @@
     background-color: var(--backgroundPrim);
     gap: 2em;
 }
+
+.devices-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}

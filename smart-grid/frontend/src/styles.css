@@ -181,3 +181,29 @@ html, body {
 .button-nrm:hover{
     background-color: var(--backgroundGrey);
 }
+
+.formContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2em;
+    padding: 0.5em;
+    background-color: var(--backgroundPrim);
+    border-radius: 5px;
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.inputFeld{
+    all: unset;
+    background-color: white;
+    height: 21px;
+    width: 50px;
+    border-radius: 2px;
+}
