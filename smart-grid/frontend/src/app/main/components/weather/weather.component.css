@@ -4,6 +4,7 @@
     background: var(--backgroundGradient);
     padding: 1em;
     border-radius: 10px;
+    border: 2px solid #3E424C;
 }
 
 .weather-city-container{

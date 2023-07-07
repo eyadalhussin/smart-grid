@@ -127,6 +127,4 @@ export class WeatherComponent implements OnInit, OnDestroy {
         break;
     }
   }
-
-
 }

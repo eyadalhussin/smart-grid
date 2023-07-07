@@ -5,7 +5,7 @@
 .mainContainer{
     display: flex;
     flex-direction: row;
-    background-color: red;
+    background-color: var(--backgroundPrim);
     width: 100%;
     height: 100%;
 }
@@ -13,6 +13,6 @@
 .container{
     display: flex;
     flex-direction: column;
-    background-color: green;
+    background-color: var(--backgroundPrim);
     flex: 1;
 }

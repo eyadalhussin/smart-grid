@@ -19,6 +19,9 @@ import { DevicesChartComponent } from './main/dashboard/charts/devices-chart/dev
 import { PowerplantDevicesComponent } from './main/devices/powerplant-devices/powerplant-devices.component';
 import { SolarparkDevicesComponent } from './main/devices/solarpark-devices/solarpark-devices.component';
 import { WindparkDevicesComponent } from './main/devices/windpark-devices/windpark-devices.component';
+import { EnergieStorageDevicesComponent } from './main/devices/energie-storage-devices/energie-storage-devices.component';
+import { EnergyInfoComponent } from './main/dashboard/energy-info/energy-info.component';
+import { TarifComponent } from './main/dashboard/tarif/tarif.component';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: '159.89.104.105',
@@ -43,6 +46,9 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     PowerplantDevicesComponent,
     SolarparkDevicesComponent,
     WindparkDevicesComponent,
+    EnergieStorageDevicesComponent,
+    EnergyInfoComponent,
+    TarifComponent,
   ],
   imports: [
     CommonModule,

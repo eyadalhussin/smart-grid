@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Powerplant } from 'src/app/classes/powerplant';
-import { DevicesService } from 'src/app/services/devices.service';
 
 @Component({
   selector: 'app-powerplant-devices',
@@ -16,11 +15,11 @@ export class PowerplantDevicesComponent implements OnInit {
   powerplants: Powerplant[] = [];
   addingPowerplant: boolean = false;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder){
+  constructor(private http: HttpClient, private formBuilder: FormBuilder) {
     this.powerplantForm = this.formBuilder.group({
       name: ['', Validators.required],
-      generators: ['', Validators.required],
-      powerGeneration: ['', Validators.required],
+      numberOfGenerators: ['', Validators.required],
+      currentPowerGeneration: ['', Validators.required],
       fuelType: ['', Validators.required]
     })
   }
@@ -29,7 +28,7 @@ export class PowerplantDevicesComponent implements OnInit {
     this.getPowerPlants();
   }
 
-  getPowerPlants(){
+  getPowerPlants() {
     this.http.get<Powerplant[]>('https://icecreamparty.de/api/smartgrid/conventional-power-plant').subscribe(erg => {
       console.log("printing powerplants");
       this.powerplants = erg;
@@ -46,14 +45,23 @@ export class PowerplantDevicesComponent implements OnInit {
 
   onPowerplantSubmit() {
     console.log("Submitting the form");
-
     if (this.powerplantForm.valid) {
       const formData = this.powerplantForm.value;
-      this.http.put('/api/smartgrid/conventional-power-plant', formData).subscribe(erg => {
+      this.http.put('https://icecreamparty.de/api/smartgrid/conventional-power-plant', formData).subscribe(erg => {
         console.log(erg);
+        
+        console.log(formData); // You can access the form values here
+        this.getPowerPlants();
+        this.powerplantForm.reset();
       });
-      console.log(formData); // You can access the form values here
-      this.powerplantForm.reset();
     }
   }
+
+  onPowerPlantDelete(id:number){
+    this.http.delete('https://icecreamparty.de/api/smartgrid/conventional-power-plant/'+id).subscribe(erg => {
+      this.getPowerPlants();
+    });
+  }
+
+
 }

@@ -51,6 +51,7 @@ export class WindparkDevicesComponent implements OnInit {
       const formData = this.windParkForm.value;
       this.http.put('https://icecreamparty.de/api/smartgrid/wind-park', formData).subscribe(erg => {
         console.log(erg);
+        this.getWindParks();
       })
       console.log(formData);
       this.windParkForm.reset();
@@ -58,10 +59,11 @@ export class WindparkDevicesComponent implements OnInit {
   }
 
   onDeleteWindPark(id:number){
+    console.log('Deleting ' + id);
 
     this.http.delete('https://icecreamparty.de/api/smartgrid/wind-park/'+id).subscribe(erg => {
-      console.log(erg);
-    })
+    this.getWindParks();
+    });
   }
 
 }

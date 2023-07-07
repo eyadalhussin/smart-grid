@@ -20,7 +20,7 @@
     width: 100%;
     padding: 3em 0 2em 0;
     flex-grow: 1;
-    gap: 2em;
+    gap: 1em;
 }
 
 .navCont{
@@ -29,7 +29,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 1.5em;
-    padding: 1em 0 1em 2em;
+    padding: 0.5em 0 0.5em 1.5em;
     cursor: pointer;
     transition: 0.3s ease;
 }
@@ -54,7 +54,7 @@
 .logoContainer{
     justify-content: space-between;
     align-items: center;
-    height: 75px;
+    height: 50px;
     width: 100%;
     background-color: var(--primDark);
     padding: 0 1em 0 2em;
@@ -67,8 +67,8 @@
 
 .logoIcon{
     cursor: pointer;
-    max-height: 35px;
-    max-width: 35px;
+    height: 30px;
+    width: 30px;
 }
 
 .logoIcon:hover{

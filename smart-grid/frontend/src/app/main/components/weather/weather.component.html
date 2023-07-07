@@ -4,12 +4,13 @@
         <!-- Sun and Temp -->
         <div class="sunContainer">
             <img src="assets/weatherIcons/{{weatherIcon}}.png" alt="" class="sunImg">
-            <span class="xxlarge bold whiteNoChange">{{temp}}°</span>
+            <span class="xlarge bold whiteNoChange" *ngIf="temp < 10">{{temp.toString().substring(0,1)}}°</span>
+            <span class="xlarge bold whiteNoChange" *ngIf="temp >= 10">{{temp.toString().substring(0,2)}}°</span>
         </div>
         <!-- City and Date -->
         <div class="cityContainer">
-            <span class="whiteNoChange semiBold large">Dortmund</span>
-            <span class="whiteNoChange semiBold large">{{day}}.{{month}}.{{year}}</span>
+            <span class="whiteNoChange semiBold normal">Dortmund</span>
+            <span class="whiteNoChange semiBold normal">{{day}}.{{month}}.{{year}}</span>
         </div>
     </div>
     <!-- Weather Info -->
@@ -17,23 +18,23 @@
         <!-- Air -->
         <div class="iconInfoCont">
             <span class="material-symbols-outlined whiteNoChange xxlarge">cloud</span>
-            <span class="whiteNoChange large semiBold">{{cloud}}%</span>
+            <span class="whiteNoChange normal semiBold">{{cloud}}%</span>
         </div>
         <!--  -->
         <div class="iconInfoCont">
             <span class="material-symbols-outlined whiteNoChange xxlarge">air</span>
-            <span class="whiteNoChange large semiBold">{{windSpeed}} km/h</span>
+            <span class="whiteNoChange normal semiBold">{{windSpeed}} km/h</span>
         </div>
         <!--  -->
         <div class="iconInfoCont">
             <span class="material-symbols-outlined whiteNoChange xxlarge">humidity_mid</span>
-            <span class="whiteNoChange large semiBold">{{humidity}}%</span>
+            <span class="whiteNoChange normal semiBold">{{humidity}}%</span>
         </div>
     </div>
     <!-- Time -->
     <div class="timeContainer">
-        <span class="whiteNoChange xlarge bold">{{hours}}</span>
-        <span class="whiteNoChange xlarge bold">:</span>
-        <span class="whiteNoChange xlarge bold">{{minutes}}</span>
+        <span class="whiteNoChange large bold">{{hours}}</span>
+        <span class="whiteNoChange large bold">:</span>
+        <span class="whiteNoChange large bold">{{minutes}}</span>
     </div>
 </div>

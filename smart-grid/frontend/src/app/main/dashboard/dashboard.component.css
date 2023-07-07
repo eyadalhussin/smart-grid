@@ -14,12 +14,11 @@
     'w'
     'tmc'
     'd'
+    'ei'
     't'
-    'ev'
-    'ee'
     ;
-    grid-gap: 2em;
-    padding: 2em 5em 5em 5em;
+    grid-gap: 0.5em;
+    padding: 1.5em 2em 2em 2em;
     background-color: var(--backgroundPrim);
     -ms-overflow-style: none;
 }
@@ -52,15 +51,17 @@
 
 
 .devices-container,
-.tarife-container,
+.energyInfo-container,
 .energie-erzeugung-container,
 .energie-verbrauch-container,
-.timeManipulationContainer{
+.timeManipulationContainer,
+.tarif-container{
     border: 2px solid #3E424C;
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
-    background-color: var(--backgroundSec);
-    padding: 1.5em;
+    /* background-color: var(--backgroundSec); */
+    background: var(--backgroundGradient);
+    padding: 0.5em 0.5em 2em 0.5em;
 }
 
 .devices-container{
@@ -77,8 +78,9 @@
     align-items: center;
 }
 
-.tarife-container{
-    grid-area: t;
+.energyInfo-container{
+    flex-direction: column;
+    grid-area: ei;
 }
 
 .energie-verbrauch-container{
@@ -89,16 +91,19 @@
     grid-area: ee;
 }
 
+.tarif-container{
+    grid-area: t;
+}
+
 @media (min-width:992px) {
     .mainContainer{ 
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: min-content min-content min-content 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: min-content min-content min-content min-content ;
         grid-template-areas: 
-        'h h h h'
-        'w w w w'
-        'tmc tmc tmc tmc'
-        'd d t t'
-        'ev ev ee ee';
+        'h h h'
+        'w w w'
+        'ei d t'
+        'tmc tmc tmc';
     }
 
     .headlineContainer{

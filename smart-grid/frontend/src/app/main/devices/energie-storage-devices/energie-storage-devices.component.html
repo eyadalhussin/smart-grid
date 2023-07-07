@@ -1,0 +1,50 @@
+<!-- Powerplants -->
+<div class="devices-container">
+    <!-- Device Type and Button -->
+    <div class="type-button-container">
+        <h3 class="black">Energie Storages</h3>
+        <button class="addButton" (click)="toggleAdd('energieStorage')" *ngIf="!addingEnergieStorage">Add+</button>
+        <button class="cancelButton" (click)="toggleAdd('energieStorage')" *ngIf="addingEnergieStorage">Cancel</button>
+    </div>
+
+    <div class="addContainer" *ngIf="addingEnergieStorage">
+        <!-- Form for adding a new Powerplant -->
+        <form [formGroup]="energieStorageForm" (ngSubmit)="onEnergieStorageSubmit()" class="formContainer">
+            <!-- Name -->
+            <div class="inputContainer">
+                <label for="name" class="black">Name</label>
+                <input type="text" name="name" formControlName="name" class="inputFeld">
+            </div>
+            <!-- Capacity -->
+            <div class="inputContainer">
+                <label for="capacity" class="black">Capacity</label>
+                <input type="number" name="capacity" formControlName="capacity" class="inputFeld">
+            </div>
+
+            <button class="confirmButton" type="submit">Confirm</button>
+
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Listing Solar Parks -->
+            <tr *ngFor="let element of energieStorages">
+                <td>{{element.id}}</td>
+                <td>{{element.name}}</td>
+                <td>{{element.capacity}}</td>
+                <td><button class="cancelButton" (click)="onEnergieStorageDelete(element.id)">remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- //Solar Parks -->
+    <p class="black center" *ngIf="energieStorages.length == 0">There is no Energie-Storages registered!</p>
+</div>

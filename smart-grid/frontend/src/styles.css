@@ -21,6 +21,8 @@ html, body {
     --red: #d9534f;
     --green: #5cb85c;
     --scrollbarColor: #B1B1B1;
+    --cyan:#5bc0de;
+    --outline: #5C64BA;
     --shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     --shadowM: 5px 5px 5px rgba(0, 0, 0, 0.2);
     --shadowL: 5px 5px 5px rgba(0, 0, 0, 0.3);
