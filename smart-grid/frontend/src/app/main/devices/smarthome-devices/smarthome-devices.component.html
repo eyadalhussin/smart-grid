@@ -1,0 +1,48 @@
+<!-- Powerplants -->
+<div class="devices-container">
+    <!-- Device Type and Button -->
+    <div class="type-button-container">
+        <span class="material-symbols-outlined xlarge black bold">
+            cottage
+        </span>
+        <h3 class="black">Smart Homes</h3>
+    </div>
+
+    <div class="addContainer" *ngIf="addingSmartHome">
+        <!-- Form for adding a new Powerplant -->
+        <form [formGroup]="smartHomeForm" (ngSubmit)="onSmartHomeSubmit()" class="formContainer">
+            <!-- Name -->
+            <div class="inputContainer">
+                <label for="name" class="black">Name</label>
+                <input type="text" name="name" formControlName="name" class="inputFeld">
+            </div>
+            <!-- Capacity -->
+            <div class="inputContainer">
+                <label for="capacity" class="black">Power Consumption</label>
+                <input type="number" name="capacity" formControlName="capacity" class="inputFeld">
+            </div>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Listing Solar Parks -->
+            <tr *ngFor="let element of smartHomes">
+                <td>{{element.id}}</td>
+                <td>{{element.url}}</td>
+                <td>{{element.currentPowerConsumption}}</td>
+                <td><button class="cancelButton" (click)="onSmartHomeDelete(element.id)">remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- //Solar Parks -->
+    <p class="black center" *ngIf="smartHomes.length == 0">There is no Energie-Storages registered!</p>
+</div>

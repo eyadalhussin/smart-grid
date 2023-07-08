@@ -10,7 +10,7 @@ import { SolarPark } from 'src/app/classes/solarPark';
   styleUrls: ['./energie-storage-devices.component.css']
 })
 export class EnergieStorageDevicesComponent implements OnInit{
-
+  formValidState:string = 'empty';
   //Forms
   energieStorageForm: FormGroup;
   energieStorages: EnergieStorage[] = [];
@@ -49,7 +49,11 @@ export class EnergieStorageDevicesComponent implements OnInit{
         console.log(erg);
         this.getEnergieStorages();
       });
+      this.formValidState = 'empty';
       this.energieStorageForm.reset();
+    }
+    else {
+      this.formValidState = 'invalid';
     }
   }
 

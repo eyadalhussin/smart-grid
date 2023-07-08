@@ -10,7 +10,7 @@ import { DevicesService } from 'src/app/services/devices.service';
   styleUrls: ['./windpark-devices.component.css']
 })
 export class WindparkDevicesComponent implements OnInit {
-
+  formValidState:string = 'empty';
   //Forms
   windParkForm: FormGroup;
   windParks: WindPark[] = [];
@@ -52,9 +52,13 @@ export class WindparkDevicesComponent implements OnInit {
       this.http.put('https://icecreamparty.de/api/smartgrid/wind-park', formData).subscribe(erg => {
         console.log(erg);
         this.getWindParks();
-      })
+      });
       console.log(formData);
+      this.formValidState = 'empty';
       this.windParkForm.reset();
+    }
+    else {
+      this.formValidState = 'invalid';
     }
   }
 

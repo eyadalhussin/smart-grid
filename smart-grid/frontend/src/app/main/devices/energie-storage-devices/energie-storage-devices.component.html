@@ -2,7 +2,12 @@
 <div class="devices-container">
     <!-- Device Type and Button -->
     <div class="type-button-container">
-        <h3 class="black">Energie Storages</h3>
+        <div class="headline-icon-container">
+            <span class="material-symbols-outlined xlarge black bold">
+                cottage
+            </span>
+            <h3 class="black">Energy Storages</h3>
+        </div>
         <button class="addButton" (click)="toggleAdd('energieStorage')" *ngIf="!addingEnergieStorage">Add+</button>
         <button class="cancelButton" (click)="toggleAdd('energieStorage')" *ngIf="addingEnergieStorage">Cancel</button>
     </div>
@@ -22,6 +27,8 @@
             </div>
 
             <button class="confirmButton" type="submit">Confirm</button>
+
+            <h4 class="red" *ngIf="formValidState == 'invalid' ">Please enter valid Values!</h4>
 
         </form>
     </div>

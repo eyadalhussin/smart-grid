@@ -206,6 +206,10 @@ html, body {
     all: unset;
     background-color: white;
     height: 21px;
-    width: 50px;
+    width: 150px;
     border-radius: 2px;
+}
+
+.red{
+    color: var(--red);
 }

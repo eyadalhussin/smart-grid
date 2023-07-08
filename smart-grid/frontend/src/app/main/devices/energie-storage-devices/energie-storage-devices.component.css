@@ -94,3 +94,10 @@ tbody tr td{
 .center{
     text-align: center;
 }
+
+.headline-icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}

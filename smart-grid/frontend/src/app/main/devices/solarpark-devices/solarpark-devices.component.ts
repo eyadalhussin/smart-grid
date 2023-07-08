@@ -10,6 +10,7 @@ import { SolarPark } from 'src/app/classes/solarPark';
 })
 
 export class SolarparkDevicesComponent {
+  formValidState:string = 'empty';
   //Forms
   solarParkForm: FormGroup;
   solarParks: SolarPark[] = [];
@@ -49,8 +50,11 @@ export class SolarparkDevicesComponent {
       
       this.http.put('https://icecreamparty.de/api/smartgrid/solar-park', formData).subscribe(erg => {
         this.getSolarParks();
+        this.formValidState = 'empty';
+        this.solarParkForm.reset();
       });
-      this.solarParkForm.reset();
+    } else {
+      this.formValidState = 'invalid';
     }
   }
 

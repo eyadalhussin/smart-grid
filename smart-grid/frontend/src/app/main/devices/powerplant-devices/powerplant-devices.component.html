@@ -23,10 +23,10 @@
             </div>
 
             <!-- Power Generation -->
-            <div class="inputContainer">
+            <!-- <div class="inputContainer">
                 <label for="generators" class="black">Current PowerGeneration</label>
                 <input type="number" name="currentPowerGeneration" formControlName="currentPowerGeneration" class="inputFeld">
-            </div>
+            </div> -->
 
             <!-- Fuel Type -->
             <div class="inputContainer">
@@ -39,6 +39,8 @@
             </div>
 
             <button class="confirmButton" type="submit">Confirm</button>
+
+            <h4 class="red" *ngIf="formValidState == 'invalid' ">Please enter valid Values!</h4>
 
         </form>
     </div>

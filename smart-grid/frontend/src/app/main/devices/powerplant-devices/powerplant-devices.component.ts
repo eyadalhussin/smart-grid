@@ -10,6 +10,8 @@ import { Powerplant } from 'src/app/classes/powerplant';
 })
 export class PowerplantDevicesComponent implements OnInit {
 
+  formValidState:string = 'Empty';
+
   //Forms
   powerplantForm: FormGroup;
   powerplants: Powerplant[] = [];
@@ -19,7 +21,7 @@ export class PowerplantDevicesComponent implements OnInit {
     this.powerplantForm = this.formBuilder.group({
       name: ['', Validators.required],
       numberOfGenerators: ['', Validators.required],
-      currentPowerGeneration: ['', Validators.required],
+      // currentPowerGeneration: ['', Validators.required],
       fuelType: ['', Validators.required]
     })
   }
@@ -53,7 +55,10 @@ export class PowerplantDevicesComponent implements OnInit {
         console.log(formData); // You can access the form values here
         this.getPowerPlants();
         this.powerplantForm.reset();
+        this.formValidState = 'empty';
       });
+    } else {
+      this.formValidState = 'invalid';
     }
   }
 
