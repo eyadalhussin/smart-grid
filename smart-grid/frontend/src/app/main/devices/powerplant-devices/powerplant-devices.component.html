@@ -2,7 +2,12 @@
 <div class="devices-container">
     <!-- Device Type and Button -->
     <div class="type-button-container">
-        <h3 class="black">Powerplants</h3>
+        <div class="headline-icon-container">
+            <span class="material-symbols-outlined xlarge black bold">
+                factory
+            </span>
+            <h3 class="black">Powerplants</h3>
+        </div>
         <button class="addButton" (click)="toggleAdd('powerplant')" *ngIf="!addingPowerplant">Add+</button>
         <button class="cancelButton" (click)="toggleAdd('powerplant')" *ngIf="addingPowerplant">Cancel</button>
     </div>

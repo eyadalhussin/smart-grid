@@ -23,6 +23,8 @@ import { EnergieStorageDevicesComponent } from './main/devices/energie-storage-d
 import { EnergyInfoComponent } from './main/dashboard/energy-info/energy-info.component';
 import { TarifComponent } from './main/dashboard/tarif/tarif.component';
 import { SmarthomeDevicesComponent } from './main/devices/smarthome-devices/smarthome-devices.component';
+import { ScheduleComponent } from './main/schedule/schedule.component';
+import { DatePipe } from '@angular/common';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: '159.89.104.105',
@@ -51,6 +53,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     EnergyInfoComponent,
     TarifComponent,
     SmarthomeDevicesComponent,
+    ScheduleComponent,
   ],
   imports: [
     CommonModule,
@@ -61,7 +64,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

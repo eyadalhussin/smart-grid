@@ -1,0 +1,86 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    min-height: 1000px;
+    padding: 1.5em 1.5em 5em 2em;
+    background-color: var(--backgroundPrim);
+    gap: 0.5em;
+}
+
+.devices-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.schedueles-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.schedule{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--backgroundGradient);
+    max-width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--black);
+    gap: 0.5em;
+    padding-bottom: 1.5em;
+}
+
+.ids-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1em;
+}
+
+.headline-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--backgroundPrim);
+    width: 100%;
+    padding: 0.3em 0em 0.3em 1em;
+}
+
+.span-inside{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--backgroundPrim);
+    border-radius: 5px;
+    border: 1px solid white;
+    padding: 0em 1em;
+    box-shadow: var(--shadowM);
+}
+
+.consumption-container,
+.duration-container,
+.start-container,
+.price-container,
+.exceedPrice-container{
+    display: flex;
+    gap: 1em;
+}
+
+.start-container .span-inside{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 175px;
+}
+
+.span-inside span{
+    white-space: nowrap;
+}
+
+.invisible{
+    opacity: 0;
+}
