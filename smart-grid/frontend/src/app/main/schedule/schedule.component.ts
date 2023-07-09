@@ -52,4 +52,10 @@ export class ScheduleComponent implements OnInit {
     return `${hoursString} ${minutesString}`.trim();
   }
 
+  onDeleteSchedule(id:number){
+    this.http.delete('https://icecreamparty.de/api/smartgrid/schedule/'+id).subscribe(erg => {
+      this.getSchedules();
+    });
+  }
+
 }

@@ -55,6 +55,11 @@
                 <span class="green" *ngIf="element.shouldStopDevice">Yes</span>
                 <span class="red" *ngIf="!element.shouldStopDevice">No</span>
             </div>
+
+            <div class="button-container">
+                <button class="removeButton" (click)="onDeleteSchedule(element.id)">Delete</button>
+            </div>
+
         </div>
     </div>
 

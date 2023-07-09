@@ -84,3 +84,20 @@
 .invisible{
     opacity: 0;
 }
+
+.removeButton{
+    all: unset;
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    padding: 0.3em 0.5em;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: 0.1s ease;
+    background-color: var(--red);
+}
+
+.removeButton:hover{
+    transform: scale(1.05);
+}
