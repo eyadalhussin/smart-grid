@@ -3,7 +3,11 @@
         <h3 class="black">Time Manipulation</h3>
     </div>
     <div class="accelerationContainer">
-        <span class="black semiBold normal">Acceleration Factor </span>
+        <span class="black semiBold normal">Current Factor</span>
+        <div class="current-factor-container">
+            <span class="black">{{accFactor}}</span>
+        </div>
+        <span class="black semiBold normal">Update Factor </span>
         <input type="number" class="numberInput" #accInput>
         <button (click)="updateFactor(accInput)" class="updateButton"> Update</button>
     </div>

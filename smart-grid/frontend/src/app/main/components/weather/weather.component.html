@@ -10,7 +10,16 @@
         <!-- City and Date -->
         <div class="cityContainer">
             <span class="whiteNoChange semiBold normal">Dortmund</span>
-            <span class="whiteNoChange semiBold normal">{{day}}.{{month}}.{{year}}</span>
+            <div class="dateContainer">
+                <span class="whiteNoChange semiBold normal" *ngIf="firstInit">0</span>
+                <span class="whiteNoChange semiBold normal">{{day}}</span>
+                <span class="whiteNoChange semiBold normal">.</span>
+                <span class="whiteNoChange semiBold normal" *ngIf="firstInit">0</span>
+                <span class="whiteNoChange semiBold normal">{{month}}</span>
+                <span class="whiteNoChange semiBold normal">.</span>
+                <span class="whiteNoChange semiBold normal">{{year}}</span>
+
+            </div>
         </div>
     </div>
     <!-- Weather Info -->

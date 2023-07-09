@@ -8,24 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeManipulationComponent implements OnInit {
 
-  constructor(private http : HttpClient) {}
+  accFactor: number;
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.getAccFactor();
   }
 
-  updateFactor(input:HTMLInputElement){
+  getAccFactor() {
+    this.http.get("https://icecreamparty.de/api/time").subscribe(erg => {
+      this.accFactor = erg['accelerationFactor'];
+    });
+  }
+
+  updateFactor(input: HTMLInputElement) {
     const url = `https://icecreamparty.de/api/time/acceleration?accelerationFactor=${input.value}`;
-
-    this.http.post(url, null).subscribe(
-      response => {
-
-        console.log('POST request successful!', response);
-      },
-      error => {
-
-        console.error('POST request error:', error);
-      }
-    );
+    
+    this.http.post(url, null).subscribe(erg => {
+      console.log("Acceleration Factor Updated");
+    })
+    this.accFactor = +input.value;
+    input.value = "";
   }
-
 }

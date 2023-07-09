@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 
 interface ApiResponse{
@@ -12,15 +12,24 @@ interface ApiResponse{
   styleUrls: ['./energy-info.component.css']
 })
 
-export class EnergyInfoComponent implements OnInit {
+export class EnergyInfoComponent implements OnInit, OnDestroy {
 
   consumption:number = 0;
   production:number = 0;
   energyPercentageStored:number = 0;
   totalEnergyStored:number = 0;
 
+  infoInterval;
+
   ngOnInit(): void {
     this.getInformations();
+    this.infoInterval = setInterval(()=> {
+      this.getInformations();
+    } , 5000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.infoInterval);
   }
 
   constructor(private http: HttpClient){}
@@ -44,9 +53,6 @@ export class EnergyInfoComponent implements OnInit {
           this.production = Math.floor(<number>results[1]);
           this.energyPercentageStored = Math.floor(<number>results[2]);
           this.totalEnergyStored = Math.floor(<number>results[3]);
-
-          console.log(results[0]);
-          
         }
       )
   }

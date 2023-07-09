@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IMqttMessage, MqttService } from 'ngx-mqtt';
 import { Subscription } from 'rxjs';
@@ -23,7 +24,9 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   weatherIcon: string = "DayClear";
 
-  constructor(private _mqttService: MqttService) { }
+  firstInit:boolean = true;
+
+  constructor(private _mqttService: MqttService, private http:HttpClient) { }
 
   private timeSubscription: Subscription;
   private weatherSubscription: Subscription;
@@ -33,18 +36,30 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.initTime();
+    this.getDateAndTime();
     this.timeSubscribe();
     this.weatherSubcribe();
     //If Seconds should also be shown, the Interval should be destroyed with ngOnDestroy
     setInterval(() => {
       this.seconds++;
     }, 1000);
+    this.getDateAndTime();
   }
 
   ngOnDestroy(): void {
     this.timeSubscription.unsubscribe();
     this.weatherSubscription.unsubscribe();
+  }
+
+  getDateAndTime(){
+    this.http.get("https://icecreamparty.de/api/time").subscribe(erg => {
+      let year = erg['date'].substring(0,4);
+      let month = erg['date'].substring(5,7);
+      let day = erg['date'].substring(8,10);
+      this.year = year;
+      this.month = month;
+      this.day = day;
+    });
   }
 
   timeSubscribe(): void {
@@ -64,18 +79,20 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   //Initialise the Time at the Start of the programm
-  initTime() {
-    const today = new Date();
-    this.year = today.getFullYear();
-    this.month = today.getMonth();
-    this.day = today.getDay();
-    this.hours = today.getHours();
-    this.minutes = today.getMinutes();
-    this.seconds = today.getSeconds();
-  }
+  // initTime() {
+  //   const today = new Date();
+  //   this.year = today.getFullYear();
+  //   this.month = today.getMonth();
+  //   this.day = today.getDate();
+  //   this.hours = today.getHours();
+  //   this.minutes = today.getMinutes();
+  //   this.seconds = today.getSeconds();
+  //   console.log("Month : " + this.month + " Day : " + this.day);
+  // }
 
   //This method will be called each time a new message is sent via MQTT about the TIME
   updateTime(message: JSON) {
+    this.firstInit = false;
     let date = message['date'].toString();
     let time = message['time'].toString();
 
