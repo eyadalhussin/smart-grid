@@ -35,8 +35,6 @@ export class EnergyInfoComponent implements OnInit, OnDestroy {
   constructor(private http: HttpClient){}
 
   getInformations(){
-      console.log("getting all the devices");
-      
       const url1 = "https://icecreamparty.de/api/smartgrid/energy/consumption";
       const url2 = "https://icecreamparty.de/api/smartgrid/energy/production";
       const url3 = "https://icecreamparty.de/api/smartgrid/energy/energy-percentage-stored";

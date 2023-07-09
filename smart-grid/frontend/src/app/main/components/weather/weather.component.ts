@@ -59,6 +59,8 @@ export class WeatherComponent implements OnInit, OnDestroy {
       this.year = year;
       this.month = month;
       this.day = day;
+      this.hours = erg['time'].substring(0,2);
+      this.minutes = erg['time'].substring(3,5);
     });
   }
 
