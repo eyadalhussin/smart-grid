@@ -68,5 +68,8 @@ export class PowerplantDevicesComponent implements OnInit {
     });
   }
 
+  getPowerGeneration(powerGeneration: number){
+    return Math.floor(powerGeneration);
+  }
 
 }
