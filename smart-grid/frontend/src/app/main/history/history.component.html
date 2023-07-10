@@ -1,0 +1,68 @@
+<div class="mainContainer">
+    <!-- Headline -->
+    <div class="headlineContainer">
+        <h2 class="black">Histories</h2>
+    </div>
+
+    <div class="histories-container">
+        <div class="history" *ngFor="let element of histories">
+            <h3 class="black">History {{element.id}}</h3>
+
+            <!-- Generated Power -->
+            <div class="element-container">
+                <span class="black">Generated Power</span>
+                <div class="span-container">
+                    <span class="black">{{getValue(element.generatedPower)}} kWh</span>
+                </div>
+            </div>
+            <!-- //Generated Power -->
+
+            <!-- Consumed Power -->
+            <div class="element-container">
+                <span class="black">Consumed Power</span>
+                <div class="span-container">
+                    <span class="black">{{getValue(element.consumedPower)}} kWh</span>
+                </div>
+            </div>
+            <!-- //Consumed Power -->
+
+            <!-- Price -->
+            <div class="element-container">
+                <span class="black">Price</span>
+                <div class="span-container">
+                    <span class="black">{{getValue(element.price)}}€</span>
+                </div>
+            </div>
+            <!-- //Price -->
+
+            <!-- Charge Power -->
+            <div class="element-container">
+                <span class="black">Charged Power</span>
+                <div class="span-container">
+                    <span class="black">{{element.chargedPower}} kWh</span>
+                </div>
+            </div>
+            <!-- //Charge Power -->
+
+            <!-- Von -->
+            <div class="element-container">
+                <span class="black">Von</span>
+                <div class="span-container">
+                    <span class="black">{{getFormattedDate(+element.start)}}</span>
+                </div>
+            </div>
+            <!-- //Von -->
+
+            <!-- Bis -->
+            <div class="element-container">
+                <span class="black">Bis</span>
+                <div class="span-container">
+                    <span class="black">{{getFormattedDate(+element.end)}}</span>
+                </div>
+            </div>
+            <!-- //Bis -->
+
+        </div>
+    </div>
+
+</div>

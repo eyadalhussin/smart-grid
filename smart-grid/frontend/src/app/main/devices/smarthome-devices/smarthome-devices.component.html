@@ -28,7 +28,7 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>IP-Address</th>
                 <th>Consumption</th>
                 <th></th>
             </tr>
@@ -38,7 +38,7 @@
             <tr *ngFor="let element of smartHomes">
                 <td>{{element.id}}</td>
                 <td>{{element.url}}</td>
-                <td>{{element.currentPowerConsumption}}</td>
+                <td>{{element.currentPowerConsumption.toFixed(2)}} kWh</td>
                 <td><button class="cancelButton" (click)="onSmartHomeDelete(element.id)">remove</button></td>
             </tr>
         </tbody>

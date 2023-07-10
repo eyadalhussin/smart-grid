@@ -25,6 +25,7 @@ import { TarifComponent } from './main/dashboard/tarif/tarif.component';
 import { SmarthomeDevicesComponent } from './main/devices/smarthome-devices/smarthome-devices.component';
 import { ScheduleComponent } from './main/schedule/schedule.component';
 import { DatePipe } from '@angular/common';
+import { HistoryComponent } from './main/history/history.component';
 
 export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
   hostname: '159.89.104.105',
@@ -55,6 +56,7 @@ export const MQTT_SERVICE_OPTIONS: IMqttServiceOptions = {
     TarifComponent,
     SmarthomeDevicesComponent,
     ScheduleComponent,
+    HistoryComponent,
   ],
   imports: [
     CommonModule,

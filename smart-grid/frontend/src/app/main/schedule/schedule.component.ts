@@ -29,7 +29,6 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
-
   convertUnixTimeStamp(timestamp: number) {
     const date = new Date(timestamp * 1000);
     const formattedDate = this.datePipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
@@ -37,7 +36,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   getFormattedDate(timestamp: number): string {
-    const date = new Date((timestamp - 2 * 60 * 60) * 1000); // Subtract 2 hours (2 * 60 * 60 seconds)
+    const date = new Date(timestamp  * 1000); // Subtract 2 hours (2 * 60 * 60 seconds)
     const formattedDate = this.datePipe.transform(date, 'dd.MM.yyyy HH:mm');
     return formattedDate || '';
   }

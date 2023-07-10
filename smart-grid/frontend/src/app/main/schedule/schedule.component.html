@@ -10,48 +10,52 @@
                 <h3 class="black">Schedule {{element.id}}</h3>
             </div>
             <div class="ids-container">
-                <span class="black bold">DeviceID:</span>
+                <span class="whiteNoChange bold">DeviceID:</span>
                 <div class="span-inside"> <span class="black"> {{element.deviceID}}</span></div>
-                <span class="black bold">SH-ID:</span>
+                <span class="whiteNoChange bold">SH-ID:</span>
                 <div class="span-inside"> <span class="black"> {{element.smartHomeID}}</span></div>
             </div>
 
 
             <div class="consumption-container">
-                <span class="black bold">Consumption</span>
+                <span class="whiteNoChange bold">Consumption</span>
                 <div class="span-inside"> <span class="black"> {{element.powerConsumptionKWH}} kWh</span></div>
             </div>
 
-            <span class="black">State: {{element.scheduleState}}</span>
+            
+            <div class="duration-container">
+                <span class="whiteNoChange">State: </span>
+                <div class="span-inside"><span class="black">{{element.scheduleState}}</span></div>
+            </div>
 
             <div class="duration-container">
-                <span class="black bold">Duration</span>
+                <span class="whiteNoChange bold">Duration</span>
                 <div class="span-inside"> <span class="black"> {{getFormattedTime(element.duration)}}</span></div>
             </div>
 
             <div class="start-container">
-                <span class="black bold">Start</span>
+                <span class="whiteNoChange bold">Start</span>
                 <div class="span-inside"> <span class="black"> {{getFormattedDate(element.startTime)}}</span></div>
             </div>
 
             <div class="start-container">
-                <span class="black bold">End<span class="invisible">s</span></span>
+                <span class="whiteNoChange bold">End<span class="invisible">s</span></span>
                 <div class="span-inside"> <span class="black"> {{getFormattedDate(element.endTime)}}</span></div>
             </div>
 
             <div class="price-container">
-                <span class="black">Price:</span>
+                <span class="whiteNoChange">Price:</span>
                 <div class="span-inside"><span class="black">{{element.desiredPrice}}€</span></div>
             </div>
             
             <div class="exceedPrice-container">
-                <span class="black">Exceed Price</span>
+                <span class="whiteNoChange">Exceed Price</span>
                 <span class="green" *ngIf="element.canExceedPrice">Yes</span>
                 <span class="red" *ngIf="!element.canExceedPrice">No</span>
             </div>
 
             <div class="exceedPrice-container">
-                <span class="black">Stop Device</span>
+                <span class="whiteNoChange">Stop Device</span>
                 <span class="green" *ngIf="element.shouldStopDevice">Yes</span>
                 <span class="red" *ngIf="!element.shouldStopDevice">No</span>
             </div>
